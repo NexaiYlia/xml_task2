@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flowers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="flowers.xsd">
+    <rose id="f1">
+        <name>Kazanlik Rose</name>
+        <date-of-planting>2020-05</date-of-planting>
+        <soil>ground</soil>
+        <origin>India</origin>
+        <visual-parameters>
+            <size>1,5</size>
+            <inflorescence-color>red</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-10</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>
+        </growing-tips>
+        <multipling>cuttings</multipling>
+        <spikes>true</spikes>
+    </rose>
+    <rose id="f2">
+        <name>Blanc Meillandecor</name>
+        <date-of-planting>2019-04</date-of-planting>
+        <soil>loamy</soil>
+        <origin>France</origin>
+        <visual-parameters>
+        <size>1,1</size>
+        <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+        <min-temperature>-5</min-temperature>
+        <lighting>light-loving</lighting>
+        <watering>once a week</watering>>
+        </growing-tips>
+        <multipling>seeds</multipling>
+        <spikes>true</spikes>
+    </rose>
+    <rose id="f3">
+        <name>Swany</name>
+        <date-of-planting>2021-06</date-of-planting>
+        <soil>ground</soil>
+        <origin>France</origin>
+        <visual-parameters>
+            <size>1,2</size>
+            <inflorescence-color>pink</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-15</min-temperature>
+            <lighting>moderate-lighting</lighting>
+            <watering>every day</watering>>
+        </growing-tips>
+        <multipling>seeds</multipling>
+        <spikes>false</spikes>
+    </rose>
+    <rose id="f4">
+        <name>Floribunda</name>
+        <date_of_planting>2021-07</date_of_planting>
+        <soil>ground</soil>
+        <origin>Spain</origin>
+        <visual-parameters>
+            <size>0,65</size>
+            <inflorescence-color>purple</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-20</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multipling>leaves</multipling>
+        <spikes>true</spikes>
+    </rose>
+    <pion id="f5">
+        <name>Aritina Nozen Glory</name>
+        <date-of-planting>2020-09</date-of-planting>
+        <soil>lime</soil>
+        <origin>France</origin>
+        <visual-parameters>
+            <size>0,7</size>
+            <inflorescence-color>pink</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-10</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>every day</watering>>
+        </growing-tips>
+        <multiplying>leaves</multiplying>
+        <number-peduncles>5</number-peduncles>
+    </pion>
+    <pion id="f6">
+        <name>Ann Berry Cousins</name>
+        <date-of-planting>2019-07</date-of-planting>
+        <soil>ground</soil>
+        <origin>China</origin>
+        <visual-parameters>
+            <size>0,95</size>
+            <inflorescence-color>coral pink</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-10</min-temperature>
+            <lighting>low-light</lighting>
+            <watering>every day</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <number-peduncles>7</number-peduncles>
+    </pion>
+    <pion id="f7">
+        <name>White Cap</name>
+        <date-of-planting>2019-05</date-of-planting>
+        <soil>loamy</soil>
+        <origin>USA</origin>
+        <visual-parameters>
+            <size>0,65</size>
+            <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>0</min-temperature>
+            <lighting>low-light</lighting>
+            <watering>every day</watering>>
+        </growing-tips>
+        <multipling>cuttings</multipling>
+        <number_peduncles>8</number_peduncles>
+    </pion>
+    <pion id="f8">
+        <name>Treelike</name>
+        <date-of-planting>2018-04</date-of-planting>
+        <soil>loamy</soil>
+        <origin>China</origin>
+        <visual-parameters>
+            <size>0,8</size>
+            <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-10</min-temperature>
+            <lighting>low-light</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <number_peduncles>5</number_peduncles>
+    </pion>
+    <rhododendron id="f9">
+        <name>Old Faithful</name>
+        <date-of-planting>2021-05</date-of-planting>
+        <soil>lime</soil>
+        <origin>USA</origin>
+        <visual-parameters>
+            <size>1,5</size>
+            <inflorescence-color>pink</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>0</min-temperature>
+            <lighting>shaded-light</lighting>
+            <watering>once a week</watering>>
+        </growing-tips>
+        <multiplying>seeds</multiplying>
+        <stem-thickness>0.2</stem-thickness>
+    </rhododendron>
+    <rhododendron id="f10">
+        <name>Dauricum</name>
+        <date-of-planting>2020-03</date-of-planting>
+        <soil>ground</soil>
+        <origin>China</origin>
+        <visual-parameters>
+            <size>0,5</size>
+            <inflorescence-color>red</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>0</min-temperature>
+            <lighting>shaded-light</lighting>
+            <watering>once a week</watering>>
+        </growing-tips>
+        <multipling>seeds</multipling>
+        <stem_thickness>0.15</stem_thickness>
+    </rhododendron>
+    <orchid id="f11">
+        <name>Red Lip</name>
+        <date-of-planting>2019-02</date-of-planting>
+        <soil>tree-bark</soil>
+        <origin>South America</origin>
+        <visual-parameters>
+            <size>0,7</size>
+            <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>5</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>once a week</watering>>
+        </growing-tips>
+        <multiplying>vegetative</multiplying>
+        <feeding-frequency>once a month</feeding-frequency>
+    </orchid>
+    <orchid id="f12">
+        <name>Biphrenaria</name>
+        <date-of-planting>2018-01</date-of-planting>
+        <soil>tree-bark</soil>
+        <origin>Spain</origin>
+        <visual-parameters>
+            <size>1</size>
+            <inflorescence-color>yellow</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>5</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>once a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <feeding-frequency>once a week</feeding-frequency>
+    </orchid>
+    <orchid id="f13">
+        <name>Sesame</name>
+        <date-of-planting>2019-08</date-of-planting>
+        <soil>tree-bark</soil>
+        <origin>Netherlands</origin>
+        <visual-parameters>
+            <size>0.5</size>
+            <inflorescence-color>brindle</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>0</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>once a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <feeding-frequency>twice a month</feeding-frequency>
+    </orchid>
+    <orchid id="f14">
+        <name>Wanda</name>
+        <date-of-planting>2021-12</date-of-planting>
+        <soil>tree-bark</soil>
+        <origin>South America</origin>
+        <visual-parameters>
+            <size>0.5</size>
+            <inflorescence-color>orange</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>18</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multiplying>seeds</multiplying>
+        <feeding-frequency>once a month</feeding-frequency>
+    </orchid>
+    <orchid id="f15">
+        <name>Wanda</name>
+        <date-of-planting>2021-12</date-of-planting>
+        <soil>ground</soil>
+        <origin>Austria</origin>
+        <visual-parameters>
+            <size>0.6</size>
+            <inflorescence-color>green</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>18</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <feeding-frequency>none</feeding-frequency>
+    </orchid>
+    <orchid id="f16">
+        <name>Cattleya</name>
+        <date-of-planting>2021-08</date-of-planting>
+        <soil>tree-bark</soil>
+        <origin>Netherlands</origin>
+        <visual-parameters>
+            <size>0.8</size>
+            <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>12</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <feeding-frequency>once a month</feeding-frequency>
+    </orchid>
+</flowers>
