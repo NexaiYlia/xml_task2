@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema"
-        xsi:noNamespaceSchemaLocation="flowers.xsd">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/flowers"
+        xmlns:tns="http://www.example.org/flowers"
+        elementFormDefault="qualified">
 
     <element name="flowers">
         <complexType>
             <sequence>
-                <element ref="flower" maxOccurs="unbounded"/>
+                <element ref="tns:flower" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
 
-    <element name="flower" type="flower-type" abstract="true"/>
-    <element name="rose" type="rose-type" substitutionGroup="flower"/>
-    <element name="pion" type="pion-type" substitutionGroup="flower"/>
-    <element name="rhododendron" type="rhododendron-type" substitutionGroup="flower"/>
-    <element name="orchid" type="orchid-type" substitutionGroup="flower"/>
+    <element name="flower" type="tns:Flower-type" abstract="true"/>
+    <element name="rose" type="tns:Rose-type" substitutionGroup="tns:flower"/>
+    <element name="pion" type="tns:Pion-type" substitutionGroup="tns:flower"/>
+    <element name="rhododendron" type="tns:Rhododendron-type" substitutionGroup="tns:flower"/>
+    <element name="orchid" type="tns:Orchid-type" substitutionGroup="tns:flower"/>
 
-    <complexType name="flower-type">
+    <complexType name="Flower-type">
         <sequence>
             <element name="name">
                 <simpleType>
@@ -26,60 +27,59 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element ref="date-of-planting"/>
-            <element ref="soil"/>
+            <element name="date-of-planting" type="tns:Date-of-planting"/>
+            <element name="soil" type="tns:Soil"/>
             <element name="origin" type="string"/>
-            <element ref="visual-parameters"/>
-            <element ref="growing-tips"/>
-            <element ref="multiplying"/>
+            <element name="visual-parameters" type="tns:Visual-parameters"/>
+            <element name="growing-tips" type="tns:Growing-tips"/>
+            <element name="multiplying" type="tns:Multiplying"/>
         </sequence>
-        <attribute ref="id" type="flowerID" use="required"/>
+        <attribute name="id" type="tns:Id" use="required"/>
     </complexType>
 
-    <complexType name="rose-type" maxOccurs="unbounded">
+    <complexType name="Rose-type" >
         <complexContent>
-            <extension base="flower-type">
-                <element name="spikes" type="boolean" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-
-    <complexType name="pion-type" maxOccurs="unbounded">
-        <complexContent>
-            <extension base="flower-type">
+            <extension base="tns:Flower-type">
                 <sequence>
-                    <element name="number-peduncles" type="int" use="required"/>
+                <element name="spikes" type="boolean"/>
                 </sequence>
             </extension>
         </complexContent>
-        <attribute ref="id" type="flowerID" use="required"/>
     </complexType>
 
-    <complexType name="rhododendron-type" maxOccurs="unbounded">
+
+    <complexType name="Pion-type" >
         <complexContent>
-            <extension base="flower-type">
+            <extension base="tns:Flower-type">
                 <sequence>
-                    <element name="stem-thickness" type="double" use="optional"/>
+                    <element name="number-peduncles" type="int" />
                 </sequence>
             </extension>
         </complexContent>
-        <attribute ref="id" type="flowerID" use="required"/>
     </complexType>
 
-
-    <complexType name="orchid-type" maxOccurs="unbounded">
+    <complexType name="Rhododendron-type" >
         <complexContent>
-            <extension base="flower-type">
+            <extension base="tns:Flower-type">
                 <sequence>
-                    <element name="feeding-frequency" type="string" use="optional"/>
+                    <element name="stem-thickness" type="double" />
                 </sequence>
             </extension>
         </complexContent>
-        <attribute ref="id" type="flowerID" use="required"/>
     </complexType>
 
-    <simpleType name="soil">
+
+    <complexType name="Orchid-type">
+        <complexContent>
+            <extension base="tns:Flower-type">
+                <sequence>
+                    <element name="feeding-frequency" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="Soil">
         <restriction base="string">
             <enumeration value="loamy"/>
             <enumeration value="podzolic"/>
@@ -89,7 +89,7 @@
         </restriction>
     </simpleType>
 
-    <simpleType name="multiplying">
+    <simpleType name="Multiplying">
         <restriction base="string">
             <enumeration value="leaves"/>
             <enumeration value="seeds"/>
@@ -97,29 +97,29 @@
             <enumeration value="vegetative"/>
         </restriction>
     </simpleType>
-    <complexType name="growing-tips">
 
+    <complexType name="Growing-tips" mixed="true">
         <sequence>
-            <element name="min-temperature" type="int" use="required"/>
-            <element name="lighting" type="string" use="required"/>
-            <element name="watering" type="string" use="required"/>
+            <element name="min-temperature" type="double" />
+            <element name="lighting" type="string"/>
+            <element name="watering" type="string"/>
         </sequence>
     </complexType>
 
-    <complexType name="visual-parameters">
+    <complexType name="Visual-parameters" mixed="true">
         <sequence>
-            <element name="size" type="double" use="required"/>
-            <element name="inflorescence-color" type="string" use="required"/>
+            <element name="size" type="double" />
+            <element name="inflorescence-color" type="string"/>
         </sequence>
     </complexType>
 
-    <simpleType name="date-of-planting">
+    <simpleType name="Date-of-planting">
         <restriction base="gYearMonth">
-            <pattern value="2[0-9][0-9][0-9]-(0[1-9])|(1[0-2])"/>
+            <pattern value="2[0-9][0-9][0-9]-((0[1-9])|(1[0-2]))"/>
         </restriction>
     </simpleType>
 
-    <simpleType name="id">
+    <simpleType name="Id">
         <restriction base="ID">
             <pattern value="f[0-9]+"/>
         </restriction>

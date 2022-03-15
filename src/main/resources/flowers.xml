@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flowers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="flowers.xsd">
+<flowers xmlns="http://www.example.org/flowers"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.example.org/medicines flowers.xsd">
     <rose id="f1">
         <name>Kazanlik Rose</name>
         <date-of-planting>2020-05</date-of-planting>
         <soil>ground</soil>
         <origin>India</origin>
         <visual-parameters>
-            <size>1,5</size>
+            <size>1.5</size>
             <inflorescence-color>red</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -15,7 +16,7 @@
             <lighting>light-loving</lighting>
             <watering>twice a week</watering>
         </growing-tips>
-        <multipling>cuttings</multipling>
+        <multiplying>cuttings</multiplying>
         <spikes>true</spikes>
     </rose>
     <rose id="f2">
@@ -24,15 +25,15 @@
         <soil>loamy</soil>
         <origin>France</origin>
         <visual-parameters>
-        <size>1,1</size>
-        <inflorescence-color>white</inflorescence-color>
+            <size>1.1</size>
+            <inflorescence-color>white</inflorescence-color>
         </visual-parameters>
         <growing-tips>
-        <min-temperature>-5</min-temperature>
-        <lighting>light-loving</lighting>
-        <watering>once a week</watering>>
+            <min-temperature>-5</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>once a week</watering>>
         </growing-tips>
-        <multipling>seeds</multipling>
+        <multiplying>seeds</multiplying>
         <spikes>true</spikes>
     </rose>
     <rose id="f3">
@@ -41,7 +42,7 @@
         <soil>ground</soil>
         <origin>France</origin>
         <visual-parameters>
-            <size>1,2</size>
+            <size>1.2</size>
             <inflorescence-color>pink</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -49,16 +50,16 @@
             <lighting>moderate-lighting</lighting>
             <watering>every day</watering>>
         </growing-tips>
-        <multipling>seeds</multipling>
+        <multiplying>seeds</multiplying>
         <spikes>false</spikes>
     </rose>
     <rose id="f4">
         <name>Floribunda</name>
-        <date_of_planting>2021-07</date_of_planting>
+        <date-of-planting>2021-07</date-of-planting>
         <soil>ground</soil>
         <origin>Spain</origin>
         <visual-parameters>
-            <size>0,65</size>
+            <size>0.65</size>
             <inflorescence-color>purple</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -66,7 +67,7 @@
             <lighting>light-loving</lighting>
             <watering>twice a week</watering>>
         </growing-tips>
-        <multipling>leaves</multipling>
+        <multiplying>leaves</multiplying>
         <spikes>true</spikes>
     </rose>
     <pion id="f5">
@@ -75,7 +76,7 @@
         <soil>lime</soil>
         <origin>France</origin>
         <visual-parameters>
-            <size>0,7</size>
+            <size>0.7</size>
             <inflorescence-color>pink</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -92,7 +93,7 @@
         <soil>ground</soil>
         <origin>China</origin>
         <visual-parameters>
-            <size>0,95</size>
+            <size>0.95</size>
             <inflorescence-color>coral pink</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -109,7 +110,7 @@
         <soil>loamy</soil>
         <origin>USA</origin>
         <visual-parameters>
-            <size>0,65</size>
+            <size>0.65</size>
             <inflorescence-color>white</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -117,8 +118,8 @@
             <lighting>low-light</lighting>
             <watering>every day</watering>>
         </growing-tips>
-        <multipling>cuttings</multipling>
-        <number_peduncles>8</number_peduncles>
+        <multiplying>cuttings</multiplying>
+        <number-peduncles>8</number-peduncles>
     </pion>
     <pion id="f8">
         <name>Treelike</name>
@@ -126,7 +127,7 @@
         <soil>loamy</soil>
         <origin>China</origin>
         <visual-parameters>
-            <size>0,8</size>
+            <size>0.8</size>
             <inflorescence-color>white</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -135,7 +136,7 @@
             <watering>twice a week</watering>>
         </growing-tips>
         <multiplying>cuttings</multiplying>
-        <number_peduncles>5</number_peduncles>
+        <number-peduncles>5</number-peduncles>
     </pion>
     <rhododendron id="f9">
         <name>Old Faithful</name>
@@ -143,7 +144,7 @@
         <soil>lime</soil>
         <origin>USA</origin>
         <visual-parameters>
-            <size>1,5</size>
+            <size>1.5</size>
             <inflorescence-color>pink</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -160,7 +161,7 @@
         <soil>ground</soil>
         <origin>China</origin>
         <visual-parameters>
-            <size>0,5</size>
+            <size>0.5</size>
             <inflorescence-color>red</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -168,16 +169,16 @@
             <lighting>shaded-light</lighting>
             <watering>once a week</watering>>
         </growing-tips>
-        <multipling>seeds</multipling>
-        <stem_thickness>0.15</stem_thickness>
+        <multiplying>seeds</multiplying>
+        <stem-thickness>0.15</stem-thickness>
     </rhododendron>
     <orchid id="f11">
         <name>Red Lip</name>
         <date-of-planting>2019-02</date-of-planting>
-        <soil>tree-bark</soil>
+        <soil>tree bark</soil>
         <origin>South America</origin>
         <visual-parameters>
-            <size>0,7</size>
+            <size>0.7</size>
             <inflorescence-color>white</inflorescence-color>
         </visual-parameters>
         <growing-tips>
@@ -191,7 +192,7 @@
     <orchid id="f12">
         <name>Biphrenaria</name>
         <date-of-planting>2018-01</date-of-planting>
-        <soil>tree-bark</soil>
+        <soil>tree bark</soil>
         <origin>Spain</origin>
         <visual-parameters>
             <size>1</size>
@@ -208,7 +209,7 @@
     <orchid id="f13">
         <name>Sesame</name>
         <date-of-planting>2019-08</date-of-planting>
-        <soil>tree-bark</soil>
+        <soil>tree bark</soil>
         <origin>Netherlands</origin>
         <visual-parameters>
             <size>0.5</size>
@@ -225,7 +226,7 @@
     <orchid id="f14">
         <name>Wanda</name>
         <date-of-planting>2021-12</date-of-planting>
-        <soil>tree-bark</soil>
+        <soil>tree bark</soil>
         <origin>South America</origin>
         <visual-parameters>
             <size>0.5</size>
@@ -259,7 +260,7 @@
     <orchid id="f16">
         <name>Cattleya</name>
         <date-of-planting>2021-08</date-of-planting>
-        <soil>tree-bark</soil>
+        <soil>tree bark</soil>
         <origin>Netherlands</origin>
         <visual-parameters>
             <size>0.8</size>
