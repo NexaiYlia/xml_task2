@@ -1,7 +1,8 @@
 package com.nexai.task2.builder.handler;
 
 public enum FlowerXmlAttribute {
-    ID("id");
+    ID("id"),
+    IN_STOCK("in-stock");
 
     private String name;
 

@@ -2,31 +2,46 @@ package com.nexai.task2.builder;
 
 import com.nexai.task2.builder.impl.FlowerDomBuilder;
 import com.nexai.task2.builder.impl.FlowerStaxBuilder;
-import com.nexai.task2.builder.impl.FlowersSaxBuilder;
+import com.nexai.task2.builder.impl.FlowerSaxBuilder;
 import com.nexai.task2.exception.ParsingXMLException;
-import com.nexai.task2.parser.TypeParser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FLowerBuilderFactory {
-    private TypeParser typeParser;
+    private static final Logger logger = LogManager.getLogger();
 
-    public FLowerBuilderFactory(TypeParser typeParser) {
-        this.typeParser = typeParser;
+    private enum TypeParser {
+        SAX,
+        STAX,
+        DOM,
+        JAXB
     }
 
+    private FLowerBuilderFactory() {
+    }
 
     public static AbstractFlowerBuilder createFlowerBuilder(String type) throws ParsingXMLException {
         TypeParser typeToChoice = TypeParser.valueOf(type.toUpperCase());
         switch (typeToChoice) {
             case DOM -> {
+                logger.info("Created new FlowerDomBuilder");
                 return new FlowerDomBuilder();
             }
             case STAX -> {
+                logger.info("Created new FlowerStaxBuilder");
                 return new FlowerStaxBuilder();
             }
             case SAX -> {
-                return new FlowersSaxBuilder();
+                logger.info("Created new FlowerSaxBuilder");
+                return new FlowerSaxBuilder();
             }
-            default -> throw new ParsingXMLException("Value isn't exist in enum" + typeToChoice);
+            case JAXB -> {
+                logger.info("Created new FlowerJaxbBuilder");
+                return new FlowerSaxBuilder();
+            }
+            default -> throw new ParsingXMLException("Value isn't exist in enum" + typeToChoice.name());
         }
     }
 }
+
+

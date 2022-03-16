@@ -30,12 +30,12 @@ public enum Soil {
         return name;
     }
 
-    public static Soil getSoil(String name) {
+    public static Soil getSoil(String name) throws ParsingXMLException {
         for (Soil soil : Soil.values()) {
             if (name.equalsIgnoreCase(soil.getName())) {
                 return soil;
             }
         }
-        return null;//todo smth
+        throw new ParsingXMLException("Soil doesn't exist " + name);
     }
 }

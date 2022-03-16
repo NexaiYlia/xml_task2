@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/flowers"
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/flowers"
         xmlns:tns="http://www.example.org/flowers"
         elementFormDefault="qualified">
 
@@ -14,8 +15,6 @@
     <element name="flower" type="tns:Flower-type" abstract="true"/>
     <element name="rose" type="tns:Rose-type" substitutionGroup="tns:flower"/>
     <element name="pion" type="tns:Pion-type" substitutionGroup="tns:flower"/>
-    <element name="rhododendron" type="tns:Rhododendron-type" substitutionGroup="tns:flower"/>
-    <element name="orchid" type="tns:Orchid-type" substitutionGroup="tns:flower"/>
 
     <complexType name="Flower-type">
         <sequence>
@@ -35,13 +34,14 @@
             <element name="multiplying" type="tns:Multiplying"/>
         </sequence>
         <attribute name="id" type="tns:Id" use="required"/>
+        <attribute name="in-stock" type="boolean" use="optional"/>
     </complexType>
 
     <complexType name="Rose-type" >
         <complexContent>
             <extension base="tns:Flower-type">
                 <sequence>
-                <element name="spikes" type="boolean"/>
+                    <element name="spikes" type="boolean"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -53,27 +53,6 @@
             <extension base="tns:Flower-type">
                 <sequence>
                     <element name="number-peduncles" type="int" />
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <complexType name="Rhododendron-type" >
-        <complexContent>
-            <extension base="tns:Flower-type">
-                <sequence>
-                    <element name="stem-thickness" type="double" />
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
-
-
-    <complexType name="Orchid-type">
-        <complexContent>
-            <extension base="tns:Flower-type">
-                <sequence>
-                    <element name="feeding-frequency" type="string" />
                 </sequence>
             </extension>
         </complexContent>

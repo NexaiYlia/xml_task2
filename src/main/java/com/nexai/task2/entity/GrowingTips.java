@@ -12,13 +12,13 @@ public class GrowingTips {
     public GrowingTips() {
     }
 
-    public GrowingTips(String watering, String lighting, int minTemperature) {
-        this.watering = watering;
-        this.lighting = lighting;
+    public GrowingTips(int minTemperature, String lighting, String watering) {
         this.minTemperature = minTemperature;
+        this.lighting = lighting;
+        this.watering = watering;
     }
 
-    public String getWatering(String data) {
+    public String getWatering() {
         return watering;
     }
 
@@ -26,7 +26,7 @@ public class GrowingTips {
         this.watering = watering;
     }
 
-    public String getLighting(String data) {
+    public String getLighting() {
         return lighting;
     }
 
@@ -34,7 +34,7 @@ public class GrowingTips {
         this.lighting = lighting;
     }
 
-    public int getMinTemperature(int i) {
+    public int getMinTemperature() {
         return minTemperature;
     }
 

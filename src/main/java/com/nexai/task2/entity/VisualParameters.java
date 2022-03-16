@@ -4,27 +4,27 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlType(name = "growing-tips")
-public class VisualParameters{
-    private String inflorescence_color;
+public class VisualParameters {
+    private String inflorescenceColor;
     private double size;
 
     public VisualParameters() {
     }
 
-    public VisualParameters(String inflorescence_color, double size) {
-        this.inflorescence_color = inflorescence_color;
+    public VisualParameters(String inflorescenceColor, double size) {
+        this.inflorescenceColor = inflorescenceColor;
         this.size = size;
     }
 
-    public String getInflorescence_color(String data) {
-        return inflorescence_color;
+    public String getInflorescenceColor() {
+        return inflorescenceColor;
     }
 
-    public void setInflorescence_color(String inflorescence_color) {
-        this.inflorescence_color = inflorescence_color;
+    public void setInflorescenceColor(String inflorescenceColor) {
+        this.inflorescenceColor = inflorescenceColor;
     }
 
-    public double getSize(double v) {
+    public double getSize() {
         return size;
     }
 
@@ -40,14 +40,14 @@ public class VisualParameters{
         VisualParameters that = (VisualParameters) o;
 
         if (Double.compare(that.size, size) != 0) return false;
-        return inflorescence_color != null ? inflorescence_color.equals(that.inflorescence_color) : that.inflorescence_color == null;
+        return inflorescenceColor != null ? inflorescenceColor.equals(that.inflorescenceColor) : that.inflorescenceColor == null;
     }
 
     @Override
     public int hashCode() {
         int result;
         long temp;
-        result = inflorescence_color != null ? inflorescence_color.hashCode() : 0;
+        result = inflorescenceColor != null ? inflorescenceColor.hashCode() : 0;
         temp = Double.doubleToLongBits(size);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -56,7 +56,7 @@ public class VisualParameters{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("VisualParameters{");
-        sb.append("inflorescence_color='").append(inflorescence_color).append('\'');
+        sb.append("inflorescence_color='").append(inflorescenceColor).append('\'');
         sb.append(", size=").append(size);
         sb.append('}');
         return sb.toString();

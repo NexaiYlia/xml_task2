@@ -7,17 +7,18 @@ import java.time.YearMonth;
 
 @XmlType(name = "pion")
 @XmlRootElement
-public class Rose extends Flower{
-private boolean spikes;
+public class Rose extends Flower {
+    private boolean spikes;
 
     public Rose() {
-        super();
+
     }
 
-    public Rose(String id, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, boolean spikes) {
-        super(id, name, dateOfPlanting, soil, origin, visualParameters, growingTips, multiplying);
+    public Rose(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, boolean spikes) {
+        super(id, inStok, name, dateOfPlanting, soil, origin, visualParameters, growingTips, multiplying);
         this.spikes = spikes;
     }
+
     @XmlElement(name = "spikes")
     public boolean isSpikes() {
         return spikes;
@@ -45,11 +46,4 @@ private boolean spikes;
         return result;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Rose{");
-        sb.append("spikes=").append(spikes);
-        sb.append('}');
-        return sb.toString();
-    }
 }

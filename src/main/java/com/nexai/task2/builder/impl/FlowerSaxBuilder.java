@@ -13,15 +13,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
-import java.util.Set;
 
-public class FlowersSaxBuilder extends AbstractFlowerBuilder {
-    private static Logger logger = LogManager.getLogger();
-    private Set<Flower> flowers;
+
+public class FlowerSaxBuilder extends AbstractFlowerBuilder {
+    private static final Logger logger = LogManager.getLogger();
     private final FlowerHandler handler = new FlowerHandler();
     private XMLReader reader;
 
-    public FlowersSaxBuilder() {
+    public FlowerSaxBuilder() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = factory.newSAXParser();

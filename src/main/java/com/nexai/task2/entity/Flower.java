@@ -1,14 +1,17 @@
 package com.nexai.task2.entity;
 
 
+import com.nexai.task2.YearMonthAdapter;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.time.LocalDate;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.YearMonth;
 
 @XmlType(propOrder = {"name", "dateOfPlanting", "soil", "origin", "visualParameters", "growingTips", "multiplying"}, name = "flower")
-public abstract class Flower {
+public class Flower {
     private String id;
+    private boolean inStok;
     private String name;
     private YearMonth dateOfPlanting;
     private Soil soil;
@@ -20,8 +23,9 @@ public abstract class Flower {
     public Flower() {
     }
 
-    public Flower(String id, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying) {
+    public Flower(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying) {
         this.id = id;
+        this.inStok = inStok;
         this.name = name;
         this.dateOfPlanting = dateOfPlanting;
         this.soil = soil;
@@ -31,7 +35,6 @@ public abstract class Flower {
         this.multiplying = multiplying;
     }
 
-    //todo @XmlID(IDAdapter.class)
     @XmlElement(name = "id")
     public String getId() {
         return id;
@@ -39,6 +42,15 @@ public abstract class Flower {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @XmlElement(name = "in-stock")
+    public Boolean isInStok(boolean b) {
+        return inStok;
+    }
+
+    public void setInStok(boolean inStok) {
+        this.inStok = inStok;
     }
 
     @XmlElement(name = "name")
@@ -50,7 +62,7 @@ public abstract class Flower {
         this.name = name;
     }
 
-   // @XmlJavaTypeAdapter//todo
+    @XmlJavaTypeAdapter(YearMonthAdapter.class)
     @XmlElement(name = "date-of-planting")
     public YearMonth getDateOfPlanting() {
         return dateOfPlanting;
@@ -94,6 +106,7 @@ public abstract class Flower {
 
     public void setGrowingTips(GrowingTips growingTips) {
         this.growingTips = growingTips;
+
     }
 
     @XmlElement(name = "multiplying")

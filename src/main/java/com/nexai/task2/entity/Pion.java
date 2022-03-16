@@ -7,17 +7,18 @@ import java.time.YearMonth;
 
 @XmlType(name = "pion")
 @XmlRootElement
-public class Pion extends Flower{
+public class Pion extends Flower {
     private int numberPeduncles;
 
     public Pion() {
-        super();
+
     }
 
-    public Pion(String id, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, int numberPeduncles) {
-        super(id, name, dateOfPlanting, soil, origin, visualParameters, growingTips, multiplying);
+    public Pion(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, int numberPeduncles) {
+        super(id, inStok, name, dateOfPlanting, soil, origin, visualParameters, growingTips, multiplying);
         this.numberPeduncles = numberPeduncles;
     }
+
     @XmlElement(name = "number-peduncles")
     public int getNumberPeduncles() {
         return numberPeduncles;

@@ -1,5 +1,7 @@
 package com.nexai.task2.entity;
 
+import com.nexai.task2.exception.ParsingXMLException;
+
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
@@ -26,12 +28,12 @@ public enum Multiplying {
         return name;
     }
 
-    public static Multiplying getMultiplying(String name) {
+    public static Multiplying getMultiplying(String name) throws ParsingXMLException {
         for (Multiplying multiplying : Multiplying.values()) {
             if (name.equalsIgnoreCase(multiplying.getName())) {
                 return multiplying;
             }
         }
-        return null;//todo smth
+        throw new ParsingXMLException("Production with name '" + name + "' doesn't exist");
     }
 }

@@ -5,10 +5,8 @@ import com.nexai.task2.exception.ParsingXMLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -16,20 +14,18 @@ import java.util.Set;
 
 public class FlowerHandler extends DefaultHandler {
     private static final Logger logger = LogManager.getLogger();
+    private static final String ELEMENT_ROSE = "rose";
+    private static final String ELEMENT_PION = "pion";
     private final EnumSet<FlowerXmlTag> withText;
     private Set<Flower> flowers;
     private Flower currentFlower;
     private Rose currentRose;
     private Pion currentPion;
-    private Rhododendron currentRhododendron;
-    private Orchid currentOrchid;
     private FlowerXmlTag currentXmlTag;
-    private GrowingTips currentGrowingTips;
-    private VisualParameters currentVisualParams;
 
 
     public FlowerHandler() {
-        flowers = new HashSet<Flower>();
+        flowers = new HashSet<>();
         withText = EnumSet.range(FlowerXmlTag.NAME, FlowerXmlTag.ORIGIN);
     }
 
@@ -37,50 +33,62 @@ public class FlowerHandler extends DefaultHandler {
         return flowers;
     }
 
-
-    public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-        if (qName.equals(FlowerXmlTag.ROSE.getValue())) {
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attrs) {
+        if (ELEMENT_ROSE.equals(qName)) {
             currentRose = new Rose();
             currentRose.setId(attrs.getValue(0));
-        } else if (qName.equals(FlowerXmlTag.PION.getValue())) {
+            if (attrs.getLength() == 2) {
+                currentRose.setInStok(Boolean.parseBoolean(attrs.getValue(1)));
+            }
+            currentFlower = currentRose;
+
+        } else if (ELEMENT_PION.equals(qName)) {
             currentPion = new Pion();
             currentPion.setId(attrs.getValue(0));
-        } else if (qName.equals(FlowerXmlTag.RHODODENDRON.getValue())) {
-            currentRhododendron = new Rhododendron();
-            currentRhododendron.setId(attrs.getValue(0));
-        } else if (qName.equals(FlowerXmlTag.ORCHID.getValue())) {
-            currentOrchid = new Orchid();
-            currentOrchid.setId(attrs.getValue(0));
+            if (attrs.getLength() == 2) {
+                currentPion.setInStok(Boolean.parseBoolean(attrs.getValue(1)));
+            }
+            currentFlower = currentPion;
         } else {
             FlowerXmlTag temp = FlowerXmlTag.valueOf(qName.toUpperCase().replace("-", "_"));
             if (withText.contains(temp)) {
                 currentXmlTag = temp;
             }
         }
+
     }
 
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        String roseTag = FlowerXmlTag.ROSE.getValue();
-        String piontTag = FlowerXmlTag.PION.getValue();
-        String rhododendronTag = FlowerXmlTag.RHODODENDRON.getValue();
-        String orchidTag = FlowerXmlTag.ORCHID.getValue();
-        if (qName.equals(roseTag) || qName.equals(piontTag) || qName.equals(rhododendronTag) || qName.equals(orchidTag)) {
+    @Override
+    public void endElement(String uri, String localName, String qName) {
+        if (ELEMENT_ROSE.equals(qName) || ELEMENT_PION.equals(qName)) {
             flowers.add(currentFlower);
-            currentFlower = null;
         }
     }
 
 
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    @Override
+    public void characters(char[] ch, int start, int length) {
         String data = new String(ch, start, length).strip();
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
-                case ID -> currentFlower.setId(data);
                 case NAME -> currentFlower.setName(data);
                 case DATE_OF_PLANTING -> currentFlower.setDateOfPlanting(YearMonth.parse(data));
-                case SOIL -> currentFlower.setSoil(Soil.getSoil(data));
+                case SOIL -> {
+                    try {
+                        currentFlower.setSoil(Soil.getSoil(data));
+                    } catch (ParsingXMLException e) {
+                        logger.error("Soil not exist" + data + e);
+                    }
+                }
                 case ORIGIN -> currentFlower.setOrigin(data);
-                case MULTIPLYING -> currentFlower.setMultiplying(Multiplying.getMultiplying(data));
+                case MULTIPLYING -> {
+                    try {
+                        currentFlower.setMultiplying(Multiplying.getMultiplying(data));
+                    } catch (ParsingXMLException e) {
+                        e.printStackTrace();
+                    }
+                }
                 case SPIKES -> {
                     currentRose = (Rose) currentFlower;
                     currentRose.setSpikes(Boolean.parseBoolean(data));
@@ -89,50 +97,30 @@ public class FlowerHandler extends DefaultHandler {
                     currentPion = (Pion) currentFlower;
                     currentPion.setNumberPeduncles(Integer.parseInt(data));
                 }
-                case STEM_THICKNESS -> {
-                    currentRhododendron = (Rhododendron) currentFlower;
-                    currentRhododendron.setStemThickness(Integer.parseInt(data));
-                }
-                case FEEDING_FREQUENCY -> {
-                    currentOrchid = (Orchid) currentFlower;
-                    currentOrchid.setFeedingFrequency(data);
-                }
-
                 case SIZE -> {
-                    VisualParameters visualParameters = currentFlower.getVisualParameters();
-                    visualParameters.setSize(Double.parseDouble(data));
-                    currentFlower.setVisualParameters(visualParameters);
+                    currentFlower.getVisualParameters().setSize(Double.parseDouble(data));
                 }
                 case INFLORESCENCE_COLOR -> {
-                    VisualParameters visualParameters = currentFlower.getVisualParameters();
-                    visualParameters.setInflorescence_color(data);
-                    currentFlower.setVisualParameters(visualParameters);
+                    currentFlower.getVisualParameters().setInflorescenceColor(data);
                 }
-
                 case MIN_TEMPERATURE -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setMinTemperature(Integer.parseInt(data));
-                    currentFlower.setGrowingTips(growingTips);
+                    currentFlower.getGrowingTips().setMinTemperature(Integer.parseInt(data));
                 }
                 case LIGHTING -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setLighting(data);
-                    currentFlower.setGrowingTips(growingTips);
-
+                    currentFlower.getGrowingTips().setLighting(data);
                 }
                 case WATERING -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setWatering(data);
-                    currentFlower.setGrowingTips(growingTips);
-
+                    currentFlower.getGrowingTips().setWatering(data);
                 }
-                default -> new ParsingXMLException("Data not exist");
+                default -> {
+                    logger.error("Unknown name " + currentXmlTag.name());
+                    new ParsingXMLException("Data not exist");
+                }
             }
         }
         currentXmlTag = null;
     }
 }
-
 
 
 

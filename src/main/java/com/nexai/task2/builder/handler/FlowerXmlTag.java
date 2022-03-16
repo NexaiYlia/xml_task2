@@ -1,13 +1,15 @@
 package com.nexai.task2.builder.handler;
 
+import com.nexai.task2.exception.ParsingXMLException;
+
 public enum FlowerXmlTag {
     FLOWERS("flowers"),
+    FLOWER("flower"),
     ROSE("rose"),
     PION("pion"),
-    RHODODENDRON("rhododendron"),
-    ORCHID("orchid"),
     DATE_OF_PLANTING("date-of-planting"),
     ID("id"),
+    IN_STOCK("in-stok"),
     NAME("name"),
     SOIL("soil"),
     ORIGIN("origin"),
@@ -17,7 +19,7 @@ public enum FlowerXmlTag {
     WATERING("watering"),
     SIZE("size"),
     INFLORESCENCE_COLOR("inflorescence-color"),
-    GROWING_TIPS("growing_tips"),
+    GROWING_TIPS("growing-tips"),
     MULTIPLYING("multiplying"),
     SPIKES("spikes"),
     NUMBER_PEDUNCLES("number-peduncles"),
@@ -33,4 +35,18 @@ public enum FlowerXmlTag {
     public String getValue() {
         return value;
     }
+
+    public static FlowerXmlTag getXmlTag(String name) throws ParsingXMLException {
+        for (FlowerXmlTag tag : FlowerXmlTag.values()) {
+            if (name.equals(tag.getName())) {
+                return tag;
+            }
+        }
+        throw new ParsingXMLException("Unknown tag <" + name + ">");
+    }
+
+    public String getName() {
+        return value;
+    }
 }
+
