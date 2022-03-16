@@ -121,9 +121,3 @@ public class FlowerHandler extends DefaultHandler {
         currentXmlTag = null;
     }
 }
-
-
-
-
-
-
