@@ -1,4 +1,4 @@
-package com.nexai.task2;
+package com.nexai.task2.util;
 
 import com.nexai.task2.exception.ParsingXMLException;
 import com.nexai.task2.validator.FlowerXMLValidator;

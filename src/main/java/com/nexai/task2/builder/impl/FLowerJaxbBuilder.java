@@ -1,6 +1,6 @@
 package com.nexai.task2.builder.impl;
 
-import com.nexai.task2.ResourcePathUtil;
+import com.nexai.task2.util.ResourcePathUtil;
 import com.nexai.task2.builder.AbstractFlowerBuilder;
 import com.nexai.task2.entity.Flowers;
 import com.nexai.task2.exception.ParsingXMLException;

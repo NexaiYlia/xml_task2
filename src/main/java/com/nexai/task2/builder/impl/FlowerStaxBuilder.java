@@ -1,11 +1,9 @@
 package com.nexai.task2.builder.impl;
 
-import com.nexai.task2.ResourcePathUtil;
 import com.nexai.task2.builder.AbstractFlowerBuilder;
 import com.nexai.task2.builder.handler.FlowerXmlTag;
 import com.nexai.task2.entity.*;
 import com.nexai.task2.exception.ParsingXMLException;
-import com.nexai.task2.validator.FlowerXMLValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,11 +11,9 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.time.YearMonth;
 import java.util.HashSet;
 import java.util.Set;

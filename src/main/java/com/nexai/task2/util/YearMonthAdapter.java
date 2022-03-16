@@ -1,4 +1,4 @@
-package com.nexai.task2;
+package com.nexai.task2.util;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.YearMonth;

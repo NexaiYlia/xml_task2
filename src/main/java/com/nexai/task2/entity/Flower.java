@@ -1,7 +1,7 @@
 package com.nexai.task2.entity;
 
 
-import com.nexai.task2.YearMonthAdapter;
+import com.nexai.task2.util.YearMonthAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
