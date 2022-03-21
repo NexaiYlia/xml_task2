@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flowers xmlns="http://www.example.org/flowers"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.example.org/flowers flowers.xsd">
-    <rose id="f1" in-stock="false">
-        <name>Kazanlik Rose</name>
+<flowers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:noNamespaceSchemaLocation="flowers.xsd">
+    <rose-flower id="f1" in-stock="false">
+        <flower-name>Kazanlik Rose</flower-name>
         <date-of-planting>2020-05</date-of-planting>
         <soil>ground</soil>
         <origin>India</origin>
@@ -18,9 +17,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <spikes>true</spikes>
-    </rose>
-    <rose id="f2" in-stock="true">
-        <name>Blanc Meillandecor</name>
+    </rose-flower>
+    <rose-flower id="f2" in-stock="true">
+        <flower-name>Blanc Meillandecor</flower-name>
         <date-of-planting>2019-04</date-of-planting>
         <soil>loamy</soil>
         <origin>France</origin>
@@ -35,9 +34,9 @@
         </growing-tips>
         <multiplying>seeds</multiplying>
         <spikes>true</spikes>
-    </rose>
-    <rose id="f3" in-stock="true">
-        <name>Swany</name>
+    </rose-flower>
+    <rose-flower id="f3" in-stock="true">
+        <flower-name>Swany</flower-name>
         <date-of-planting>2021-06</date-of-planting>
         <soil>ground</soil>
         <origin>France</origin>
@@ -52,9 +51,9 @@
         </growing-tips>
         <multiplying>seeds</multiplying>
         <spikes>false</spikes>
-    </rose>
-    <rose id="f4" in-stock="true">
-        <name>Floribunda</name>
+    </rose-flower>
+    <rose-flower id="f4" in-stock="true">
+        <flower-name>Floribunda</flower-name>
         <date-of-planting>2021-07</date-of-planting>
         <soil>ground</soil>
         <origin>Spain</origin>
@@ -69,9 +68,9 @@
         </growing-tips>
         <multiplying>leaves</multiplying>
         <spikes>true</spikes>
-    </rose>
-    <pion id="f5">
-        <name>Aritina Nozen Glory</name>
+    </rose-flower>
+    <pion-flower id="f5" in-stock="true">
+        <flower-name>Aritina Nozen Glory</flower-name>
         <date-of-planting>2020-09</date-of-planting>
         <soil>lime</soil>
         <origin>France</origin>
@@ -86,9 +85,9 @@
         </growing-tips>
         <multiplying>leaves</multiplying>
         <number-peduncles>5</number-peduncles>
-    </pion>
-    <pion id="f6">
-        <name>Ann Berry Cousins</name>
+    </pion-flower>
+    <pion-flower id="f6" in-stock="true">
+        <flower-name>Ann Berry Cousins</flower-name>
         <date-of-planting>2019-07</date-of-planting>
         <soil>ground</soil>
         <origin>China</origin>
@@ -103,9 +102,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>7</number-peduncles>
-    </pion>
-    <pion id="f7">
-        <name>White Cap</name>
+    </pion-flower>
+    <pion-flower id="f7" in-stock="true">
+        <flower-name>White Cap</flower-name>
         <date-of-planting>2019-05</date-of-planting>
         <soil>loamy</soil>
         <origin>USA</origin>
@@ -120,9 +119,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
-    <pion id="f8">
-        <name>Treelike</name>
+    </pion-flower>
+    <pion-flower id="f8" in-stock="true">
+        <flower-name>Treelike</flower-name>
         <date-of-planting>2018-04</date-of-planting>
         <soil>loamy</soil>
         <origin>China</origin>
@@ -137,9 +136,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>5</number-peduncles>
-    </pion>
-    <rose id="f9">
-        <name>Old Faithful</name>
+    </pion-flower>
+    <rose-flower id="f9" in-stock="true">
+        <flower-name>Old Faithful</flower-name>
         <date-of-planting>2021-05</date-of-planting>
         <soil>lime</soil>
         <origin>USA</origin>
@@ -154,9 +153,9 @@
         </growing-tips>
         <multiplying>seeds</multiplying>
         <spikes>true</spikes>
-    </rose>
-    <rose id="f10" in-stock="true">
-        <name>Dauricum</name>
+    </rose-flower>
+    <rose-flower id="f10" in-stock="true">
+        <flower-name>Dauricum</flower-name>
         <date-of-planting>2020-03</date-of-planting>
         <soil>ground</soil>
         <origin>China</origin>
@@ -171,9 +170,9 @@
         </growing-tips>
         <multiplying>seeds</multiplying>
         <spikes>true</spikes>
-    </rose>
-    <pion id="f12" in-stock="true">
-        <name>Biphrenaria</name>
+    </rose-flower>
+    <pion-flower id="f12" in-stock="true">
+        <flower-name>Biphrenaria</flower-name>
         <date-of-planting>2018-01</date-of-planting>
         <soil>tree bark</soil>
         <origin>Spain</origin>
@@ -188,9 +187,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
-    <pion id="f13" in-stock="true">
-        <name>Sesame</name>
+    </pion-flower>
+    <pion-flower id="f13" in-stock="true">
+        <flower-name>Sesame</flower-name>
         <date-of-planting>2019-08</date-of-planting>
         <soil>tree bark</soil>
         <origin>Netherlands</origin>
@@ -205,9 +204,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
-    <pion id="f14" in-stock="true">
-        <name>Wanda</name>
+    </pion-flower>
+    <pion-flower id="f14" in-stock="true">
+        <flower-name>Wanda</flower-name>
         <date-of-planting>2021-12</date-of-planting>
         <soil>tree bark</soil>
         <origin>South America</origin>
@@ -222,9 +221,9 @@
         </growing-tips>
         <multiplying>seeds</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
-    <pion id="f15" in-stock="true">
-        <name>Wanda</name>
+    </pion-flower>
+    <pion-flower id="f15" in-stock="true">
+        <flower-name>Wanda</flower-name>
         <date-of-planting>2021-12</date-of-planting>
         <soil>ground</soil>
         <origin>Austria</origin>
@@ -239,9 +238,9 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
-    <pion id="f16" in-stock="true">
-        <name>Cattleya</name>
+    </pion-flower>
+    <pion-flower id="f16" in-stock="true">
+        <flower-name>Cattleya</flower-name>
         <date-of-planting>2021-08</date-of-planting>
         <soil>tree bark</soil>
         <origin>Netherlands</origin>
@@ -256,5 +255,5 @@
         </growing-tips>
         <multiplying>cuttings</multiplying>
         <number-peduncles>8</number-peduncles>
-    </pion>
+    </pion-flower>
 </flowers>

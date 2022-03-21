@@ -1,7 +1,7 @@
-package com.nexai.task2.builder.impl;
+package com.nexai.task2.parser.builder.impl;
 
+import com.nexai.task2.parser.builder.AbstractFlowerBuilder;
 import com.nexai.task2.util.ResourcePathUtil;
-import com.nexai.task2.builder.AbstractFlowerBuilder;
 import com.nexai.task2.entity.Flowers;
 import com.nexai.task2.exception.ParsingXMLException;
 import com.nexai.task2.validator.FlowerXMLValidator;
@@ -48,5 +48,4 @@ public class FLowerJaxbBuilder extends AbstractFlowerBuilder {
         }
     }
 }
-
 

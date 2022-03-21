@@ -1,9 +1,9 @@
-package com.nexai.task2.builder.impl;
+package com.nexai.task2.parser.builder.impl;
 
+import com.nexai.task2.parser.builder.AbstractFlowerBuilder;
+import com.nexai.task2.parser.FlowerXmlTag;
 import com.nexai.task2.util.ResourcePathUtil;
-import com.nexai.task2.builder.AbstractFlowerBuilder;
-import com.nexai.task2.builder.handler.FlowerXmlAttribute;
-import com.nexai.task2.builder.handler.FlowerXmlTag;
+import com.nexai.task2.parser.FlowerXmlAttribute;
 import com.nexai.task2.entity.*;
 import com.nexai.task2.exception.ParsingXMLException;
 import com.nexai.task2.validator.FlowerXMLValidator;
@@ -20,18 +20,27 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.YearMonth;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FlowerDomBuilder extends AbstractFlowerBuilder {
     private static final Logger logger = LogManager.getLogger();
     private DocumentBuilder docBuilder;
+    private Set<Flower> flowers;
 
     public FlowerDomBuilder() {
+        flowers = new HashSet<Flower>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             logger.error("Parser configuration error" + e);
         }
+    }
+
+    @Override
+    public Set<Flower> getFlowers() {
+        return flowers;
     }
 
     @Override
@@ -42,15 +51,15 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
             try {
                 doc = docBuilder.parse(fileName);
                 Element root = doc.getDocumentElement();
-                NodeList roseFlowersList = root.getElementsByTagName(FlowerXmlTag.ROSE.getName());
-                NodeList pionFlowersList = root.getElementsByTagName(FlowerXmlTag.PION.getName());
+                NodeList roseFlowersList = root.getElementsByTagName(FlowerXmlTag.ROSE_FLOWER.getName());
+                NodeList pionFlowersList = root.getElementsByTagName(FlowerXmlTag.PION_FLOWER.getName());
                 for (int i = 0; i < roseFlowersList.getLength(); i++) {
                     Element flowerElement = (Element) roseFlowersList.item(i);
                     Flower flower = buildRose(flowerElement);
                     flowers.add(flower);
                 }
                 for (int i = 0; i < pionFlowersList.getLength(); i++) {
-                    Element flowerElement = (Element) roseFlowersList.item(i);
+                    Element flowerElement = (Element) pionFlowersList.item(i);
                     Flower flower = buildPion(flowerElement);
                     flowers.add(flower);
                 }
@@ -60,8 +69,7 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         }
     }
 
-
-    private Rose buildRose(Element flowerElement) throws ParsingXMLException {
+    private Flower buildRose(Element flowerElement) throws ParsingXMLException {
         Rose rose = new Rose();
         buildFlower(rose, flowerElement);
         String inStockAttr = FlowerXmlAttribute.IN_STOCK.getName();
@@ -72,18 +80,16 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         return rose;
     }
 
-    private Pion buildPion(Element flowerElement) throws ParsingXMLException {
+    private Flower buildPion(Element flowerElement) throws ParsingXMLException {
         Pion pion = new Pion();
         buildFlower(pion, flowerElement);
         pion.setNumberPeduncles(getElementIntContent(flowerElement, FlowerXmlTag.NUMBER_PEDUNCLES.getName()));
         return pion;
     }
 
-
     private void buildFlower(Flower flower, Element flowerElement) throws ParsingXMLException {
-        //flower.setId(flowerElement.getAttribute(FlowerXmlTag.ID.getName()));
-        //flower.setInStok(getElementBooleanContent(flowerElement, FlowerXmlTag.IN_STOCK.getName()));
-        flower.setName(getElementTextContent(flowerElement, FlowerXmlTag.NAME.getName()));
+        flower.setId(flowerElement.getAttribute(FlowerXmlTag.ID.getName()));
+        flower.setFlowerName(getElementTextContent(flowerElement, FlowerXmlTag.FLOWER_NAME.getName()));
         flower.setDateOfPlanting(getElementYearMonthContent(flowerElement, FlowerXmlTag.DATE_OF_PLANTING.getName()));
         flower.setSoil(getElementSoilValue(flowerElement));
         flower.setOrigin(getElementTextContent(flowerElement, FlowerXmlTag.ORIGIN.getName()));
@@ -91,7 +97,6 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         flower.setVisualParameters(buildVisualParameters(flowerElement));
         flower.setGrowingTips(buildGrowingTips(flowerElement));
     }
-
 
     private GrowingTips buildGrowingTips(Element element) {
         NodeList growingTipsList = element.getElementsByTagName(FlowerXmlTag.GROWING_TIPS.getName());
@@ -122,12 +127,6 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         return Integer.parseInt(stringInt);
     }
 
-    private String getElementTextContent(Element element, String tagName) {
-        NodeList nodeList = element.getElementsByTagName(tagName);
-        Node node = nodeList.item(0);
-        return node.getTextContent();
-    }
-
     private Soil getElementSoilValue(Element element) throws ParsingXMLException {
         String soil = getElementTextContent(element, FlowerXmlTag.SOIL.getName());
         return Soil.getSoil(soil);
@@ -147,4 +146,14 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         String booleanString = getElementTextContent(element, tagName);
         return Boolean.parseBoolean(booleanString);
     }
+
+    private static String getElementTextContent(Element element, String elementName) {
+        NodeList nList = element.getElementsByTagName(elementName);
+        Node node = nList.item(0);
+        String text = node.getTextContent();
+        return text;
+    }
+
 }
+
+

@@ -1,6 +1,6 @@
 package com.nexai.task2.validator;
 
-import com.nexai.task2.builder.handler.FlowerErrorHandler;
+import com.nexai.task2.parser.handler.FlowerErrorHandler;
 import com.nexai.task2.exception.ParsingXMLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

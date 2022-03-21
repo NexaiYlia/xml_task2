@@ -1,4 +1,4 @@
-package com.nexai.task2.builder;
+package com.nexai.task2.parser.builder;
 
 import com.nexai.task2.entity.Flower;
 import com.nexai.task2.exception.ParsingXMLException;

@@ -3,16 +3,17 @@ package com.nexai.task2.entity;
 
 import com.nexai.task2.util.YearMonthAdapter;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.YearMonth;
 
-@XmlType(propOrder = {"name", "dateOfPlanting", "soil", "origin", "visualParameters", "growingTips", "multiplying"}, name = "flower")
+@XmlType(name = "flower")
 public class Flower {
     private String id;
-    private boolean inStok;
-    private String name;
+    private boolean inStock;
+    private String flowerName;
     private YearMonth dateOfPlanting;
     private Soil soil;
     private String origin;
@@ -23,10 +24,10 @@ public class Flower {
     public Flower() {
     }
 
-    public Flower(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying) {
+    public Flower(String id, boolean inStock, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying) {
         this.id = id;
-        this.inStok = inStok;
-        this.name = name;
+        this.inStock = inStock;
+        this.flowerName = name;
         this.dateOfPlanting = dateOfPlanting;
         this.soil = soil;
         this.origin = origin;
@@ -35,7 +36,7 @@ public class Flower {
         this.multiplying = multiplying;
     }
 
-    @XmlElement(name = "id")
+    @XmlAttribute(name = "id")
     public String getId() {
         return id;
     }
@@ -46,20 +47,20 @@ public class Flower {
 
     @XmlElement(name = "in-stock")
     public Boolean isInStok(boolean b) {
-        return inStok;
+        return inStock;
     }
 
     public void setInStok(boolean inStok) {
-        this.inStok = inStok;
+        this.inStock = inStok;
     }
 
-    @XmlElement(name = "name")
-    public String getName() {
-        return name;
+    @XmlElement(name = "flower-name")
+    public String getFlowerName() {
+        return flowerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFlowerName(String flowerName) {
+        this.flowerName = flowerName;
     }
 
     @XmlJavaTypeAdapter(YearMonthAdapter.class)
@@ -90,7 +91,7 @@ public class Flower {
         this.origin = origin;
     }
 
-    @XmlElement(name = "visualParameters")
+    @XmlElement(name = "visual-parameters")
     public VisualParameters getVisualParameters() {
         return visualParameters;
     }
@@ -99,7 +100,7 @@ public class Flower {
         this.visualParameters = visualParameters;
     }
 
-    @XmlElement(name = "growingTips")
+    @XmlElement(name = "growing-tips")
     public GrowingTips getGrowingTips() {
         return growingTips;
     }
@@ -126,7 +127,7 @@ public class Flower {
         Flower fLower = (Flower) o;
 
         if (id != null ? !id.equals(fLower.id) : fLower.id != null) return false;
-        if (name != null ? !name.equals(fLower.name) : fLower.name != null) return false;
+        if (flowerName != null ? !flowerName.equals(fLower.flowerName) : fLower.flowerName != null) return false;
         if (dateOfPlanting != null ? !dateOfPlanting.equals(fLower.dateOfPlanting) : fLower.dateOfPlanting != null)
             return false;
         if (soil != null ? !soil.equals(fLower.soil) : fLower.soil != null) return false;
@@ -140,7 +141,7 @@ public class Flower {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (flowerName != null ? flowerName.hashCode() : 0);
         result = 31 * result + (dateOfPlanting != null ? dateOfPlanting.hashCode() : 0);
         result = 31 * result + (soil != null ? soil.hashCode() : 0);
         result = 31 * result + (origin != null ? origin.hashCode() : 0);
@@ -154,7 +155,7 @@ public class Flower {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Flower{");
         sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
+        sb.append(", name='").append(flowerName).append('\'');
         sb.append(", dateOfPlanting=").append(dateOfPlanting);
         sb.append(", soil=").append(soil);
         sb.append(", origin='").append(origin).append('\'');

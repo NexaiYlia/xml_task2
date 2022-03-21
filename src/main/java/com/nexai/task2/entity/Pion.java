@@ -5,13 +5,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.time.YearMonth;
 
-@XmlType(name = "pion")
+@XmlType(name = "pion-flower")
 @XmlRootElement
 public class Pion extends Flower {
     private int numberPeduncles;
 
     public Pion() {
-
     }
 
     public Pion(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, int numberPeduncles) {

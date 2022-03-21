@@ -3,7 +3,7 @@ package com.nexai.task2.entity;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlType(name = "growing-tips")
+@XmlType(name = "visual-parameters")
 public class VisualParameters {
     private String inflorescenceColor;
     private double size;

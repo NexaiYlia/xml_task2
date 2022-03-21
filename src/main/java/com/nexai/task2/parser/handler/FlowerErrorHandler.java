@@ -1,4 +1,4 @@
-package com.nexai.task2.builder.handler;
+package com.nexai.task2.parser.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,16 +1,16 @@
-package com.nexai.task2.builder.handler;
+package com.nexai.task2.parser;
 
 import com.nexai.task2.exception.ParsingXMLException;
 
 public enum FlowerXmlTag {
     FLOWERS("flowers"),
     FLOWER("flower"),
-    ROSE("rose"),
-    PION("pion"),
+    ROSE_FLOWER("rose-flower"),
+    PION_FLOWER("pion-flower"),
     DATE_OF_PLANTING("date-of-planting"),
     ID("id"),
     IN_STOCK("in-stok"),
-    NAME("name"),
+    FLOWER_NAME("flower-name"),
     SOIL("soil"),
     ORIGIN("origin"),
     VISUAL_PARAMETERS("visual-parameters"),
@@ -42,7 +42,7 @@ public enum FlowerXmlTag {
                 return tag;
             }
         }
-        throw new ParsingXMLException("Unknown tag <" + name + ">");
+        throw new ParsingXMLException("Unknown tag  " + name + " ");
     }
 
     public String getName() {

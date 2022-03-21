@@ -1,7 +1,8 @@
-package com.nexai.task2.builder.handler;
+package com.nexai.task2.parser.handler;
 
 import com.nexai.task2.entity.*;
 import com.nexai.task2.exception.ParsingXMLException;
+import com.nexai.task2.parser.FlowerXmlTag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -14,8 +15,8 @@ import java.util.Set;
 
 public class FlowerHandler extends DefaultHandler {
     private static final Logger logger = LogManager.getLogger();
-    private static final String ELEMENT_ROSE = "rose";
-    private static final String ELEMENT_PION = "pion";
+    private static final String ELEMENT_ROSE = FlowerXmlTag.ROSE_FLOWER.getValue();
+    private static final String ELEMENT_PION = FlowerXmlTag.PION_FLOWER.getValue();
     private final EnumSet<FlowerXmlTag> withText;
     private Set<Flower> flowers;
     private Flower currentFlower;
@@ -26,7 +27,7 @@ public class FlowerHandler extends DefaultHandler {
 
     public FlowerHandler() {
         flowers = new HashSet<>();
-        withText = EnumSet.range(FlowerXmlTag.NAME, FlowerXmlTag.ORIGIN);
+        withText = EnumSet.range(FlowerXmlTag.FLOWER_NAME, FlowerXmlTag.ORIGIN);
     }
 
     public Set<Flower> getFlowers() {
@@ -51,18 +52,26 @@ public class FlowerHandler extends DefaultHandler {
             }
             currentFlower = currentPion;
         } else {
-            FlowerXmlTag temp = FlowerXmlTag.valueOf(qName.toUpperCase().replace("-", "_"));
+            FlowerXmlTag temp = null;
+            try {
+                temp = FlowerXmlTag.getXmlTag(qName);
+            } catch (ParsingXMLException e) {
+                e.printStackTrace();
+            }
             if (withText.contains(temp)) {
                 currentXmlTag = temp;
             }
         }
-
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-        if (ELEMENT_ROSE.equals(qName) || ELEMENT_PION.equals(qName)) {
-            flowers.add(currentFlower);
+        if (ELEMENT_ROSE.equals(qName)) {
+            flowers.add(currentRose);
+            System.out.println(flowers);
+        } else if (ELEMENT_PION.equals(qName)) {
+            flowers.add(currentPion);
+            System.out.println(flowers);
         }
     }
 
@@ -70,9 +79,10 @@ public class FlowerHandler extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) {
         String data = new String(ch, start, length).strip();
+        data = data.replace("-", "_").trim();
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
-                case NAME -> currentFlower.setName(data);
+                case FLOWER_NAME ->  currentFlower.setFlowerName(data);
                 case DATE_OF_PLANTING -> currentFlower.setDateOfPlanting(YearMonth.parse(data));
                 case SOIL -> {
                     try {
@@ -104,13 +114,20 @@ public class FlowerHandler extends DefaultHandler {
                     currentFlower.getVisualParameters().setInflorescenceColor(data);
                 }
                 case MIN_TEMPERATURE -> {
-                    currentFlower.getGrowingTips().setMinTemperature(Integer.parseInt(data));
+                    GrowingTips growingTips = currentFlower.getGrowingTips();
+                    growingTips.setMinTemperature(Integer.parseInt(data));
+                    currentFlower.setGrowingTips(growingTips);
                 }
                 case LIGHTING -> {
-                    currentFlower.getGrowingTips().setLighting(data);
+                    GrowingTips growingTips = currentFlower.getGrowingTips();
+                    growingTips.setLighting(data);
+                    currentFlower.setGrowingTips(growingTips);
+
                 }
                 case WATERING -> {
-                    currentFlower.getGrowingTips().setWatering(data);
+                    GrowingTips growingTips = currentFlower.getGrowingTips();
+                    growingTips.setWatering(data);
+                    currentFlower.setGrowingTips(growingTips);
                 }
                 default -> {
                     logger.error("Unknown name " + currentXmlTag.name());

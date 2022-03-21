@@ -21,8 +21,8 @@ public class Flowers {
 
 
     @XmlElements({
-            @XmlElement(type = Rose.class, name = "rose"),
-            @XmlElement(type = Pion.class, name = "pion"),
+            @XmlElement(type = Rose.class, name = "rose-flower"),
+            @XmlElement(type = Pion.class, name = "pion-flower"),
 
     })
     public void setFlowers(Set<Flower> flowers) {

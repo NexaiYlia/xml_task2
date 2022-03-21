@@ -1,8 +1,9 @@
-package com.nexai.task2.builder;
+package com.nexai.task2.parser.builder;
 
-import com.nexai.task2.builder.impl.FlowerDomBuilder;
-import com.nexai.task2.builder.impl.FlowerStaxBuilder;
-import com.nexai.task2.builder.impl.FlowerSaxBuilder;
+import com.nexai.task2.parser.builder.AbstractFlowerBuilder;
+import com.nexai.task2.parser.builder.impl.FlowerDomBuilder;
+import com.nexai.task2.parser.builder.impl.FlowerStaxBuilder;
+import com.nexai.task2.parser.builder.impl.FlowerSaxBuilder;
 import com.nexai.task2.exception.ParsingXMLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

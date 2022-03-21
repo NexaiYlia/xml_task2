@@ -5,13 +5,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.time.YearMonth;
 
-@XmlType(name = "pion")
+@XmlType(name = "rose-flower")
 @XmlRootElement
 public class Rose extends Flower {
     private boolean spikes;
 
     public Rose() {
-
     }
 
     public Rose(String id, boolean inStok, String name, YearMonth dateOfPlanting, Soil soil, String origin, VisualParameters visualParameters, GrowingTips growingTips, Multiplying multiplying, boolean spikes) {
