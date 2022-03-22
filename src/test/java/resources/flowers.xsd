@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="flowers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="flower" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="flower" type="Flower-type" abstract="true"/>
+    <xs:element name="rose-flower" type="Rose-type" substitutionGroup="flower"/>
+    <xs:element name="pion-flower" type="Pion-type" substitutionGroup="flower"/>
+
+    <xs:complexType name="Flower-type">
+        <xs:sequence>
+            <xs:element name="flower-name">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="3"/>
+                        <xs:maxLength value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="date-of-planting" type="Date-of-planting"/>
+            <xs:element name="soil" type="Soil"/>
+            <xs:element name="origin" type="xs:string"/>
+            <xs:element name="visual-parameters" type="Visual-parameters"/>
+            <xs:element name="growing-tips" type="Growing-tips"/>
+            <xs:element name="multiplying" type="Multiplying"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="Id" use="required"/>
+        <xs:attribute name="in-stock" type="xs:boolean"/>
+    </xs:complexType>
+
+    <xs:complexType name="Rose-type">
+        <xs:complexContent>
+            <xs:extension base="Flower-type">
+                <xs:sequence>
+                    <xs:element name="spikes" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Pion-type">
+        <xs:complexContent>
+            <xs:extension base="Flower-type">
+                <xs:sequence>
+                    <xs:element name="number-peduncles" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="Soil">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="loamy"/>
+            <xs:enumeration value="podzolic"/>
+            <xs:enumeration value="ground"/>
+            <xs:enumeration value="lime"/>
+            <xs:enumeration value="tree bark"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Multiplying">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="leaves"/>
+            <xs:enumeration value="seeds"/>
+            <xs:enumeration value="cuttings"/>
+            <xs:enumeration value="vegetative"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Growing-tips" mixed="true">
+        <xs:sequence>
+            <xs:element name="min-temperature" type="xs:double"/>
+            <xs:element name="lighting" type="xs:string"/>
+            <xs:element name="watering" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Visual-parameters" mixed="true">
+        <xs:sequence>
+            <xs:element name="size" type="xs:double"/>
+            <xs:element name="inflorescence-color" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Date-of-planting">
+        <xs:restriction base="xs:gYearMonth">
+            <xs:pattern value="2[0-9][0-9][0-9]-((0[1-9])|(1[0-2]))"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Id">
+        <xs:restriction base="xs:ID">
+            <xs:pattern value="f[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

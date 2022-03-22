@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flowers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:noNamespaceSchemaLocation="flowers.xsd">
+    <rose id="f51" in-stock="false">
+        <flower-name>Kazanlik Rose</flower-name>
+        <date-of-planting>2020-05</date-of-planting>
+        <soil>ground</soil>
+        <origin>India</origin>
+        <visual-parameters>
+            <size>1.5</size>
+            <inflorescence-color>red</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+            <min-temperature>-10</min-temperature>
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <spikes>true</spikes>
+    </rose-flower>
+  
+    <pion-flower id="f55" in-stock="true">
+        <flower-name>Cattleya</flower-name>
+        <date-of-planting>2021-08</date-of-planting>
+        <soil>tree bark</soil>
+        <origin>Netherlands</origin>
+        <visual-parameters>
+            <size>0.8</size>
+            <inflorescence-color>white</inflorescence-color>
+        </visual-parameters>
+        <growing-tips>
+      
+            <lighting>light-loving</lighting>
+            <watering>twice a week</watering>>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+        <number-peduncles>8</number-peduncles>
+    </pion-flower>
+</flowers>
