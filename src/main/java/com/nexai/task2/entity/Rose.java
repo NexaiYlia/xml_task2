@@ -45,4 +45,13 @@ public class Rose extends Flower {
         return result;
     }
 
+    @Override
+    public String toString() {
+        String className = this.getClass().getSimpleName();
+        StringBuilder builder = new StringBuilder(className);
+        builder.append('{').append(super.toString()).
+                append("spikes=").append(spikes).
+                append("}\n");
+        return builder.toString();
+    }
 }

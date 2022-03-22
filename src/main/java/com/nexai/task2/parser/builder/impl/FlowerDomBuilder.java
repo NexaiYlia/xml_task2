@@ -66,6 +66,9 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
             } catch (IOException | SAXException exception) {
                 logger.error("Incorrect data" + exception);
             }
+        } else {
+            logger.info("File '" + fileName + "' does not match schema '" + schemaFileName + "'");
+            throw new ParsingXMLException("File '" + fileName + "' does not match schema '" + schemaFileName + "'");
         }
     }
 
@@ -74,7 +77,7 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         buildFlower(rose, flowerElement);
         String inStockAttr = FlowerXmlAttribute.IN_STOCK.getName();
         if (flowerElement.hasAttribute(inStockAttr)) {
-            rose.setInStok(Boolean.parseBoolean(flowerElement.getAttribute(inStockAttr)));
+            rose.setInStoсk(Boolean.parseBoolean(flowerElement.getAttribute(inStockAttr)));
         }
         rose.setSpikes(getElementBooleanContent(flowerElement, FlowerXmlTag.SPIKES.getName()));
         return rose;
@@ -83,17 +86,21 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
     private Flower buildPion(Element flowerElement) throws ParsingXMLException {
         Pion pion = new Pion();
         buildFlower(pion, flowerElement);
+        String inStockAttr = FlowerXmlAttribute.IN_STOCK.getName();
+        if (flowerElement.hasAttribute(inStockAttr)) {
+            pion.setInStoсk(Boolean.parseBoolean(flowerElement.getAttribute(inStockAttr)));
+        }
         pion.setNumberPeduncles(getElementIntContent(flowerElement, FlowerXmlTag.NUMBER_PEDUNCLES.getName()));
         return pion;
     }
 
     private void buildFlower(Flower flower, Element flowerElement) throws ParsingXMLException {
-        flower.setId(flowerElement.getAttribute(FlowerXmlTag.ID.getName()));
+        flower.setId(flowerElement.getAttribute(FlowerXmlAttribute.ID.getName()));
         flower.setFlowerName(getElementTextContent(flowerElement, FlowerXmlTag.FLOWER_NAME.getName()));
         flower.setDateOfPlanting(getElementYearMonthContent(flowerElement, FlowerXmlTag.DATE_OF_PLANTING.getName()));
-        flower.setSoil(getElementSoilValue(flowerElement));
+        flower.setSoil(getElementSoil(flowerElement));
         flower.setOrigin(getElementTextContent(flowerElement, FlowerXmlTag.ORIGIN.getName()));
-        flower.setMultiplying(getElementMultiplyingValue(flowerElement));
+        flower.setMultiplying(getElementMultiplying(flowerElement));
         flower.setVisualParameters(buildVisualParameters(flowerElement));
         flower.setGrowingTips(buildGrowingTips(flowerElement));
     }
@@ -127,12 +134,12 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
         return Integer.parseInt(stringInt);
     }
 
-    private Soil getElementSoilValue(Element element) throws ParsingXMLException {
+    private Soil getElementSoil(Element element) throws ParsingXMLException {
         String soil = getElementTextContent(element, FlowerXmlTag.SOIL.getName());
         return Soil.getSoil(soil);
     }
 
-    private Multiplying getElementMultiplyingValue(Element element) throws ParsingXMLException {
+    private Multiplying getElementMultiplying(Element element) throws ParsingXMLException {
         String multiplying = getElementTextContent(element, FlowerXmlTag.MULTIPLYING.getName());
         return Multiplying.getMultiplying(multiplying);
     }

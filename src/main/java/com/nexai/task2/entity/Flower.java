@@ -45,13 +45,13 @@ public class Flower {
         this.id = id;
     }
 
-    @XmlElement(name = "in-stock")
+    @XmlAttribute(name = "in-stock")
     public Boolean isInStok(boolean b) {
         return inStock;
     }
 
-    public void setInStok(boolean inStok) {
-        this.inStock = inStok;
+    public void setInStoсk(boolean inStoсk) {
+        this.inStock = inStoсk;
     }
 
     @XmlElement(name = "flower-name")
@@ -153,7 +153,7 @@ public class Flower {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Flower{");
+        final StringBuilder sb = new StringBuilder("{");
         sb.append("id=").append(id);
         sb.append(", name='").append(flowerName).append('\'');
         sb.append(", dateOfPlanting=").append(dateOfPlanting);

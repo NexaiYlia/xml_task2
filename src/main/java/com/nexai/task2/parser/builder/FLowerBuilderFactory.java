@@ -11,17 +11,16 @@ import org.apache.logging.log4j.Logger;
 public class FLowerBuilderFactory {
     private static final Logger logger = LogManager.getLogger();
 
-    private enum TypeParser {
-        SAX,
-        STAX,
-        DOM,
-        JAXB
-    }
+    private static final FLowerBuilderFactory instance = new FLowerBuilderFactory();
 
     private FLowerBuilderFactory() {
     }
 
-    public static AbstractFlowerBuilder createFlowerBuilder(String type) throws ParsingXMLException {
+    public static FLowerBuilderFactory getInstance() {
+        return instance;
+    }
+
+    public AbstractFlowerBuilder createFlowerBuilder(String type) throws ParsingXMLException {
         TypeParser typeToChoice = TypeParser.valueOf(type.toUpperCase());
         switch (typeToChoice) {
             case DOM -> {

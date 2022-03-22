@@ -69,14 +69,14 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
 
     private Flower buildFlower(Flower flower, XMLStreamReader reader) throws XMLStreamException, ParsingXMLException {
         flower.setId(reader.getAttributeValue(null, FlowerXmlTag.ID.getValue()));
-        flower.setInStok(Boolean.parseBoolean(reader.getAttributeValue(null, (FlowerXmlTag.IN_STOCK.getValue()))));
+        flower.setInStoсk(Boolean.parseBoolean(reader.getAttributeValue(null, (FlowerXmlTag.IN_STOCK.getValue()))));
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
             switch (type) {
                 case XMLStreamConstants.START_ELEMENT:
                     name = reader.getLocalName();
-                    FlowerXmlTag tag = FlowerXmlTag.valueOf(name.toUpperCase().replace(HYPHEN, UNDERSCORE));
+                    FlowerXmlTag tag = FlowerXmlTag.valueOf(name.toUpperCase().replace("-", "_").trim());
                     switch (tag) {
                         case FLOWER_NAME -> {
                             flower.setFlowerName(getXMLText(reader));

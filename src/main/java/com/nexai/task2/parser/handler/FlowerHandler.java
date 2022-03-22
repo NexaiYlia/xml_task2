@@ -40,7 +40,7 @@ public class FlowerHandler extends DefaultHandler {
             currentRose = new Rose();
             currentRose.setId(attrs.getValue(0));
             if (attrs.getLength() == 2) {
-                currentRose.setInStok(Boolean.parseBoolean(attrs.getValue(1)));
+                currentRose.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
             }
             currentFlower = currentRose;
 
@@ -48,7 +48,7 @@ public class FlowerHandler extends DefaultHandler {
             currentPion = new Pion();
             currentPion.setId(attrs.getValue(0));
             if (attrs.getLength() == 2) {
-                currentPion.setInStok(Boolean.parseBoolean(attrs.getValue(1)));
+                currentPion.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
             }
             currentFlower = currentPion;
         } else {

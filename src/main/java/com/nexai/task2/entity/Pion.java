@@ -47,9 +47,12 @@ public class Pion extends Flower {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Pion{");
-        sb.append("numberPeduncles=").append(numberPeduncles);
-        sb.append('}');
-        return sb.toString();
+        String className = this.getClass().getSimpleName();
+        StringBuilder builder = new StringBuilder(className);
+        builder.append('{').append(super.toString()).
+                append("numberPeduncles=").append(numberPeduncles).
+                append("}\n");
+        return builder.toString();
     }
+
 }
