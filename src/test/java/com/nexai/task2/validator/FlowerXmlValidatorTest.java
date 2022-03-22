@@ -8,20 +8,20 @@ import org.testng.annotations.Test;
 public class FlowerXmlValidatorTest {
 
     @Test
-    public void testIsValidXML() throws ParsingXMLException {
+    public void validateXmlCorrectTest() throws ParsingXMLException {
         String fileNameXml = ResourcePathUtil.getResourcePath("flowers.xml");
         String fileNameSchema = ResourcePathUtil.getResourcePath("flowers.xsd");
         boolean expected = true;
-        boolean actual = FlowerXMLValidator.validateXml(fileNameXml, fileNameSchema);
+        boolean actual = FlowerXmlValidator.validateXml(fileNameXml, fileNameSchema);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testIsNotValidXML() throws ParsingXMLException {
+    public void validateXmlWrongTest() throws ParsingXMLException {
         String fileNameXml = ResourcePathUtil.getResourcePath("flowers2.xml");
         String fileNameSchema = ResourcePathUtil.getResourcePath("flowers.xsd");
-        boolean expected = false;
-        boolean actual = FlowerXMLValidator.validateXml(fileNameXml, fileNameSchema);
-        Assert.assertEquals(expected, actual);
+
+        boolean actual = FlowerXmlValidator.validateXml(fileNameXml, fileNameSchema);
+        Assert.assertFalse(actual);
     }
 }

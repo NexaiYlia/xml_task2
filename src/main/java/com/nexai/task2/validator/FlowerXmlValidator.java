@@ -16,16 +16,16 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class FlowerXMLValidator {
+public class FlowerXmlValidator {
     private static final Logger logger = LogManager.getLogger();
-    private static FlowerXMLValidator instance;
+    private static FlowerXmlValidator instance;
 
-    private FlowerXMLValidator() {
+    private FlowerXmlValidator() {
     }
 
-    public static FlowerXMLValidator getInstance() {
+    public static FlowerXmlValidator getInstance() {
         if (instance == null) {
-            instance = new FlowerXMLValidator();
+            instance = new FlowerXmlValidator();
         }
         return instance;
     }

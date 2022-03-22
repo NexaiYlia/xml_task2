@@ -6,7 +6,7 @@ import com.nexai.task2.util.ResourcePathUtil;
 import com.nexai.task2.parser.FlowerXmlAttribute;
 import com.nexai.task2.entity.*;
 import com.nexai.task2.exception.ParsingXMLException;
-import com.nexai.task2.validator.FlowerXMLValidator;
+import com.nexai.task2.validator.FlowerXmlValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -46,7 +46,7 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
     @Override
     public void buildSetFlowers(String fileName) throws ParsingXMLException {
         String schemaFileName = ResourcePathUtil.getResourcePath(AbstractFlowerBuilder.SCHEMA);
-        if (FlowerXMLValidator.validateXml(fileName, schemaFileName)) {
+        if (FlowerXmlValidator.validateXml(fileName, schemaFileName)) {
             Document doc;
             try {
                 doc = docBuilder.parse(fileName);

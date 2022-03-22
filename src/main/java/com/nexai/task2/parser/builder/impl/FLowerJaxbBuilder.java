@@ -4,7 +4,7 @@ import com.nexai.task2.parser.builder.AbstractFlowerBuilder;
 import com.nexai.task2.util.ResourcePathUtil;
 import com.nexai.task2.entity.Flowers;
 import com.nexai.task2.exception.ParsingXMLException;
-import com.nexai.task2.validator.FlowerXMLValidator;
+import com.nexai.task2.validator.FlowerXmlValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +32,7 @@ public class FLowerJaxbBuilder extends AbstractFlowerBuilder {
     @Override
     public void buildSetFlowers(String fileName) throws ParsingXMLException {
         String schemaFileName = ResourcePathUtil.getResourcePath(AbstractFlowerBuilder.SCHEMA);
-        if (FlowerXMLValidator.validateXml(fileName, schemaFileName)) {
+        if (FlowerXmlValidator.validateXml(fileName, schemaFileName)) {
             try {
                 InputStream fileInputStream = new FileInputStream(fileName);
                 Flowers flowersObject = (Flowers) unmarshaller.unmarshal(fileInputStream);
