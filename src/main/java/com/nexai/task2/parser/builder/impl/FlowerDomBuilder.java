@@ -96,6 +96,7 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
 
     private void buildFlower(Flower flower, Element flowerElement) throws ParsingXMLException {
         flower.setId(flowerElement.getAttribute(FlowerXmlAttribute.ID.getName()));
+        flower.setInStoсk(Boolean.parseBoolean(flowerElement.getAttribute((FlowerXmlAttribute.IN_STOCK.getName()))));
         flower.setFlowerName(getElementTextContent(flowerElement, FlowerXmlTag.FLOWER_NAME.getName()));
         flower.setDateOfPlanting(getElementYearMonthContent(flowerElement, FlowerXmlTag.DATE_OF_PLANTING.getName()));
         flower.setSoil(getElementSoil(flowerElement));

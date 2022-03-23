@@ -20,11 +20,11 @@ public class FlowerSaxBuilderTest {
 
     public void setUp() {
         expected = new HashSet<>();
-        VisualParameters visualParametersRose = new VisualParameters("red", 1.5);
+        VisualParameters visualParametersRose = new VisualParameters(1.5, "red");
         GrowingTips growingTipsRose = new GrowingTips(-10, "light - loving", "twice a week");
         Rose rose = new Rose("f51", false, "Kazanlik Rose", YearMonth.of(2020, 5), Soil.GROUND, "India", visualParametersRose, growingTipsRose, Multiplying.CUTTINGS, true);
 
-        VisualParameters visualParametersPion = new VisualParameters("white", 0.8);
+        VisualParameters visualParametersPion = new VisualParameters(0.8, "white");
         GrowingTips growingTipsPion = new GrowingTips(-12, "light - loving", "twice a week");
         Pion pion = new Pion("f55", true, "Cattleya", YearMonth.of(2021, 8), Soil.TREE_BARK, "Netherlands", visualParametersPion, growingTipsPion, Multiplying.CUTTINGS, 8);
         expected.add(rose);
@@ -32,13 +32,13 @@ public class FlowerSaxBuilderTest {
     }
 
     @Test
-    public void flowerStaxBuilderTest () {
+    public void flowerStaxBuilderTest() {
         AbstractFlowerBuilder builder;
         setUp();
         String fileName;
         Set<Flower> actual = null;
         try {
-           fileName = ResourcePathUtil.getResourcePath(FILE_NAME);
+            fileName = ResourcePathUtil.getResourcePath(FILE_NAME);
             builder = FLowerBuilderFactory.getInstance().createFlowerBuilder("SAX");
             builder.buildSetFlowers(fileName);
             actual = builder.getFlowers();

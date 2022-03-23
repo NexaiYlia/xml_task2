@@ -22,7 +22,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="date-of-planting" type="Date-of-planting"/>
+            <xs:element name="date-of-planting" type="xs:gYearMonth"/>
             <xs:element name="soil" type="Soil"/>
             <xs:element name="origin" type="xs:string"/>
             <xs:element name="visual-parameters" type="Visual-parameters"/>
@@ -30,7 +30,7 @@
             <xs:element name="multiplying" type="Multiplying"/>
         </xs:sequence>
         <xs:attribute name="id" type="Id" use="required"/>
-        <xs:attribute name="in-stock" type="xs:boolean" use="optional"/>
+        <xs:attribute name="in-stock" type="xs:boolean"/>
     </xs:complexType>
 
     <xs:complexType name="Rose-type">

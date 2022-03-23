@@ -36,6 +36,10 @@ public class FlowerSaxBuilder extends AbstractFlowerBuilder {
         reader.setContentHandler(handler);
     }
 
+    public Set<Flower> getFlowers() {
+        return flowers;
+    }
+
     public void buildSetFlowers(String fileName) {
         try {
             reader.parse(fileName);

@@ -17,17 +17,23 @@ public class FlowerHandler extends DefaultHandler {
     private static final Logger logger = LogManager.getLogger();
     private static final String ELEMENT_ROSE = FlowerXmlTag.ROSE_FLOWER.getValue();
     private static final String ELEMENT_PION = FlowerXmlTag.PION_FLOWER.getValue();
+    private static final String VISUAL_PARAMETERS = FlowerXmlTag.VISUAL_PARAMETERS.getValue();
+    private static final String GROWING_TIPS = FlowerXmlTag.GROWING_TIPS.getValue();
+    private static final String MULTIPLYING = FlowerXmlTag.MULTIPLYING.getValue();
     private final EnumSet<FlowerXmlTag> withText;
     private Set<Flower> flowers;
     private Flower currentFlower;
     private Rose currentRose;
     private Pion currentPion;
+    private VisualParameters currentVisualParameters;
+    private GrowingTips currentGrowingTips;
+    private Multiplying currentMultiplying;
     private FlowerXmlTag currentXmlTag;
 
 
     public FlowerHandler() {
         flowers = new HashSet<>();
-        withText = EnumSet.range(FlowerXmlTag.FLOWER_NAME, FlowerXmlTag.ORIGIN);
+        withText = EnumSet.range(FlowerXmlTag.FLOWER_NAME, FlowerXmlTag.FEEDING_FREQUENCY);
     }
 
     public Set<Flower> getFlowers() {
@@ -39,22 +45,34 @@ public class FlowerHandler extends DefaultHandler {
         if (ELEMENT_ROSE.equals(qName)) {
             currentRose = new Rose();
             currentRose.setId(attrs.getValue(0));
-            currentRose.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
+            if (attrs.getLength() == 2) {
+                currentRose.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
+            }
             currentFlower = currentRose;
 
         } else if (ELEMENT_PION.equals(qName)) {
             currentPion = new Pion();
-            currentRose.setId(attrs.getValue(0));
-            currentRose.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
-            currentFlower = currentPion;
-        } else {
-            FlowerXmlTag temp = FlowerXmlTag.valueOf(qName.toUpperCase().replace("-", "_"));
-            if (withText.contains(temp)) {
-                currentXmlTag = temp;
+            currentPion.setId(attrs.getValue(0));
+            if (attrs.getLength() == 2) {
+                currentPion.setInStoсk(Boolean.parseBoolean(attrs.getValue(1)));
             }
+            currentFlower = currentPion;
+        } else if (VISUAL_PARAMETERS.equals(qName)) {
+            currentVisualParameters = new VisualParameters();
+        } else if (GROWING_TIPS.equals(qName)) {
+            currentGrowingTips = new GrowingTips();
+        } else {
+            try {
+                FlowerXmlTag temp = FlowerXmlTag.getXmlTag(qName);
+                if (withText.contains(temp)) {
+                    currentXmlTag = temp;
+                }
+            } catch (ParsingXMLException e) {
+                e.printStackTrace();
+            }
+
         }
     }
-
 
     @Override
     public void endElement(String uri, String localName, String qName) {
@@ -62,8 +80,11 @@ public class FlowerHandler extends DefaultHandler {
             flowers.add(currentRose);
         } else if (ELEMENT_PION.equals(qName)) {
             flowers.add(currentPion);
+        } else if (VISUAL_PARAMETERS.equals(qName)) {
+            currentFlower.setVisualParameters(currentVisualParameters);
+        } else if (GROWING_TIPS.equals(qName)) {
+            currentFlower.setGrowingTips(currentGrowingTips);
         }
-        System.out.println(flowers);
     }
 
 
@@ -72,8 +93,6 @@ public class FlowerHandler extends DefaultHandler {
         String data = new String(ch, start, length).strip();
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
-                case ID -> currentFlower.setId(data);
-                case IN_STOCK -> currentFlower.setInStoсk(Boolean.parseBoolean(data));
                 case FLOWER_NAME -> currentFlower.setFlowerName(data);
                 case DATE_OF_PLANTING -> currentFlower.setDateOfPlanting(YearMonth.parse(data));
                 case SOIL -> {
@@ -86,7 +105,7 @@ public class FlowerHandler extends DefaultHandler {
                 case ORIGIN -> currentFlower.setOrigin(data);
                 case MULTIPLYING -> {
                     try {
-                        currentFlower.setMultiplying(Multiplying.getMultiplying(data));
+                        currentFlower.setMultiplying(Multiplying.getMultiplying((data)));
                     } catch (ParsingXMLException e) {
                         e.printStackTrace();
                     }
@@ -100,38 +119,30 @@ public class FlowerHandler extends DefaultHandler {
                     currentPion.setNumberPeduncles(Integer.parseInt(data));
                 }
                 case SIZE -> {
-                    VisualParameters visualParameters = currentFlower.getVisualParameters();
-                    visualParameters.setSize(Double.parseDouble(data));
-                    currentFlower.setVisualParameters(visualParameters);
+                    currentVisualParameters.setSize(Double.parseDouble(data));
+                    currentFlower.setVisualParameters(currentVisualParameters);
                 }
                 case INFLORESCENCE_COLOR -> {
-                    VisualParameters visualParameters = currentFlower.getVisualParameters();
-                    visualParameters.setInflorescenceColor(data);
-                    currentFlower.setVisualParameters(visualParameters);
+                    currentVisualParameters.setInflorescenceColor(data);
+                    currentFlower.setVisualParameters(currentVisualParameters);
                 }
                 case MIN_TEMPERATURE -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setMinTemperature(Integer.parseInt(data));
-                    currentFlower.setGrowingTips(growingTips);
+                    currentGrowingTips.setMinTemperature(Integer.parseInt(data));
+                    currentFlower.setGrowingTips(currentGrowingTips);
                 }
                 case LIGHTING -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setLighting(data);
-                    currentFlower.setGrowingTips(growingTips);
+                    currentGrowingTips.setLighting(data);
+                    currentFlower.setGrowingTips(currentGrowingTips);
 
                 }
                 case WATERING -> {
-                    GrowingTips growingTips = currentFlower.getGrowingTips();
-                    growingTips.setWatering(data);
-                    currentFlower.setGrowingTips(growingTips);
+                    currentGrowingTips.setWatering(data);
+                    currentFlower.setGrowingTips(currentGrowingTips);
                 }
-                default -> {
-                    logger.error("Unknown name " + currentXmlTag.name());
-                    new ParsingXMLException("Data not exist");
-                }
+                default -> throw new EnumConstantNotPresentException(
+                        currentXmlTag.getDeclaringClass(), currentXmlTag.name());
             }
         }
         currentXmlTag = null;
     }
 }
-

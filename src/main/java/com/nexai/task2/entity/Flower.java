@@ -93,7 +93,7 @@ public class Flower {
 
     @XmlElement(name = "visual-parameters")
     public VisualParameters getVisualParameters() {
-        return visualParameters;
+        return new VisualParameters(visualParameters.getSize(), visualParameters.getInflorescenceColor());
     }
 
     public void setVisualParameters(VisualParameters visualParameters) {
@@ -102,7 +102,7 @@ public class Flower {
 
     @XmlElement(name = "growing-tips")
     public GrowingTips getGrowingTips() {
-        return growingTips;
+        return new GrowingTips(growingTips.getMinTemperature(), growingTips.getLighting(), growingTips.getWatering());
     }
 
     public void setGrowingTips(GrowingTips growingTips) {
@@ -154,6 +154,7 @@ public class Flower {
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");
         sb.append("id=").append(id);
+        sb.append(", inStock='").append(inStock).append('\'');
         sb.append(", name='").append(flowerName).append('\'');
         sb.append(", dateOfPlanting=").append(dateOfPlanting);
         sb.append(", soil=").append(soil);

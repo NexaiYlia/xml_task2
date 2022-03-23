@@ -11,9 +11,10 @@ public class VisualParameters {
     public VisualParameters() {
     }
 
-    public VisualParameters(String inflorescenceColor, double size) {
-        this.inflorescenceColor = inflorescenceColor;
+    public VisualParameters(double size, String inflorescenceColor) {
         this.size = size;
+        this.inflorescenceColor = inflorescenceColor;
+
     }
 
     public String getInflorescenceColor() {
