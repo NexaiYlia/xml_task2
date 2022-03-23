@@ -30,7 +30,7 @@
             <xs:element name="multiplying" type="Multiplying"/>
         </xs:sequence>
         <xs:attribute name="id" type="Id" use="required"/>
-        <xs:attribute name="in-stock" type="xs:boolean"/>
+        <xs:attribute name="in-stock" type="xs:boolean" use="optional"/>
     </xs:complexType>
 
     <xs:complexType name="Rose-type">

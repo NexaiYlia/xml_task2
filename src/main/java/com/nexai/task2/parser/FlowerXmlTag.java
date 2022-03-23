@@ -9,7 +9,7 @@ public enum FlowerXmlTag {
     PION_FLOWER("pion-flower"),
     DATE_OF_PLANTING("date-of-planting"),
     ID("id"),
-    IN_STOCK("in-stok"),
+    IN_STOCK("in-stoсk"),
     FLOWER_NAME("flower-name"),
     SOIL("soil"),
     ORIGIN("origin"),

@@ -30,7 +30,6 @@ public class FlowerDomBuilderTest {
         expected.add(rose);
         expected.add(pion);
     }
-
     @Test
     public void flowerDomBuilderTest() {
         AbstractFlowerBuilder builder;

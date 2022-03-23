@@ -20,7 +20,6 @@ public class FlowerXmlValidatorTest {
     public void validateXmlWrongTest() throws ParsingXMLException {
         String fileNameXml = ResourcePathUtil.getResourcePath("flowers2.xml");
         String fileNameSchema = ResourcePathUtil.getResourcePath("flowers.xsd");
-
         boolean actual = FlowerXmlValidator.validateXml(fileNameXml, fileNameSchema);
         Assert.assertFalse(actual);
     }

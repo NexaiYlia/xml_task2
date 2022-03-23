@@ -46,7 +46,7 @@ public class Flower {
     }
 
     @XmlAttribute(name = "in-stock")
-    public Boolean isInStok(boolean b) {
+    public Boolean isInStock(boolean b) {
         return inStock;
     }
 
@@ -73,7 +73,7 @@ public class Flower {
         this.dateOfPlanting = dateOfPlanting;
     }
 
-    @XmlElement(name = "soil")
+
     public Soil getSoil() {
         return soil;
     }
@@ -110,7 +110,6 @@ public class Flower {
 
     }
 
-    @XmlElement(name = "multiplying")
     public Multiplying getMultiplying() {
         return multiplying;
     }
@@ -166,4 +165,3 @@ public class Flower {
         return sb.toString();
     }
 }
-

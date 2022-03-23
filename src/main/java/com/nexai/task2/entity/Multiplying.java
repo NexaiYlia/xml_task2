@@ -12,7 +12,7 @@ public enum Multiplying {
     @XmlEnumValue("leaves")
     LEAVES("leaves"),
     @XmlEnumValue("seeds")
-    SEED("seeds"),
+    SEEDS("seeds"),
     @XmlEnumValue("cuttings")
     CUTTINGS("cuttings"),
     @XmlEnumValue("vegetative")

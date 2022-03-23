@@ -29,7 +29,7 @@ public class FlowerDomBuilder extends AbstractFlowerBuilder {
     private Set<Flower> flowers;
 
     public FlowerDomBuilder() {
-        flowers = new HashSet<Flower>();
+        flowers = new HashSet<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
