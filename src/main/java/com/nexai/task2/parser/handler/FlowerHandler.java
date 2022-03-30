@@ -93,51 +93,68 @@ public class FlowerHandler extends DefaultHandler {
         String data = new String(ch, start, length).strip();
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
-                case FLOWER_NAME -> currentFlower.setFlowerName(data);
-                case DATE_OF_PLANTING -> currentFlower.setDateOfPlanting(YearMonth.parse(data));
+                case FLOWER_NAME -> {
+                    currentFlower.setFlowerName(data);
+                    break;
+                }
+                case DATE_OF_PLANTING -> {
+                    currentFlower.setDateOfPlanting(YearMonth.parse(data));
+                    break;
+                }
                 case SOIL -> {
                     try {
                         currentFlower.setSoil(Soil.getSoil(data));
                     } catch (ParsingXMLException e) {
                         logger.error("Soil not exist" + data + e);
                     }
+                    break;
                 }
-                case ORIGIN -> currentFlower.setOrigin(data);
+                case ORIGIN -> {
+                    currentFlower.setOrigin(data);
+                    break;
+                }
                 case MULTIPLYING -> {
                     try {
                         currentFlower.setMultiplying(Multiplying.getMultiplying((data)));
                     } catch (ParsingXMLException e) {
                         e.printStackTrace();
                     }
+                    break;
                 }
                 case SPIKES -> {
                     currentRose = (Rose) currentFlower;
                     currentRose.setSpikes(Boolean.parseBoolean(data));
+                    break;
                 }
                 case NUMBER_PEDUNCLES -> {
                     currentPion = (Pion) currentFlower;
                     currentPion.setNumberPeduncles(Integer.parseInt(data));
+                    break;
                 }
                 case SIZE -> {
                     currentVisualParameters.setSize(Double.parseDouble(data));
                     currentFlower.setVisualParameters(currentVisualParameters);
+                    break;
                 }
                 case INFLORESCENCE_COLOR -> {
                     currentVisualParameters.setInflorescenceColor(data);
                     currentFlower.setVisualParameters(currentVisualParameters);
+                    break;
                 }
                 case MIN_TEMPERATURE -> {
                     currentGrowingTips.setMinTemperature(Integer.parseInt(data));
                     currentFlower.setGrowingTips(currentGrowingTips);
+                    break;
                 }
                 case LIGHTING -> {
                     currentGrowingTips.setLighting(data);
                     currentFlower.setGrowingTips(currentGrowingTips);
-
+                    break;
                 }
                 case WATERING -> {
                     currentGrowingTips.setWatering(data);
                     currentFlower.setGrowingTips(currentGrowingTips);
+                    break;
                 }
                 default -> throw new EnumConstantNotPresentException(
                         currentXmlTag.getDeclaringClass(), currentXmlTag.name());

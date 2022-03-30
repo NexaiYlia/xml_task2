@@ -39,7 +39,10 @@ public class FLowerBuilderFactory {
                 logger.info("Created new FlowerJaxbBuilder");
                 return new FlowerSaxBuilder();
             }
-            default -> throw new ParsingXMLException("Value isn't exist in enum" + typeToChoice.name());
+            default -> {
+                logger.info("Builder with this name" + typeToChoice + "doesn't exist!");
+                throw new ParsingXMLException("Value isn't exist in enum" + typeToChoice.name());
+            }
         }
     }
 }

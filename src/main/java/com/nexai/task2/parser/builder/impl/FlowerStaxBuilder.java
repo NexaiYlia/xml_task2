@@ -80,42 +80,51 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                     switch (tag) {
                         case FLOWER_NAME -> {
                             flower.setFlowerName(getXMLText(reader));
+                            break;
                         }
                         case DATE_OF_PLANTING -> {
                             flower.setDateOfPlanting(YearMonth.parse(getXMLText(reader)));
+                            break;
                         }
                         case SOIL -> {
                             flower.setSoil(Soil.getSoil(getXMLText(reader)));
+                            break;
 
                         }
                         case ORIGIN -> {
                             flower.setOrigin(getXMLText(reader));
+                            break;
 
                         }
                         case MULTIPLYING -> {
                             flower.setMultiplying(Multiplying.getMultiplying(getXMLText(reader)));
+                            break;
 
                         }
                         case SPIKES -> {
                             Rose rose = (Rose) flower;
                             rose.setSpikes(Boolean.parseBoolean(getXMLText(reader)));
+                            break;
 
                         }
                         case NUMBER_PEDUNCLES -> {
                             Pion pion = (Pion) flower;
                             pion.setNumberPeduncles(Integer.parseInt(getXMLText(reader)));
+                            break;
 
                         }
                         case SIZE -> {
                             VisualParameters visualParameters = flower.getVisualParameters();
                             visualParameters.setSize(Double.parseDouble(getXMLText(reader)));
                             flower.setVisualParameters(visualParameters);
+                            break;
 
                         }
                         case INFLORESCENCE_COLOR -> {
                             VisualParameters visualParameters = flower.getVisualParameters();
                             visualParameters.setInflorescenceColor(getXMLText(reader));
                             flower.setVisualParameters(visualParameters);
+                            break;
 
                         }
 
@@ -123,26 +132,31 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                             GrowingTips growingTips = flower.getGrowingTips();
                             growingTips.setMinTemperature(Integer.parseInt(getXMLText(reader)));
                             flower.setGrowingTips(growingTips);
+                            break;
 
                         }
                         case LIGHTING -> {
                             GrowingTips growingTips = flower.getGrowingTips();
                             growingTips.setLighting(getXMLText(reader));
                             flower.setGrowingTips(growingTips);
+                            break;
 
                         }
                         case WATERING -> {
                             GrowingTips growingTips = flower.getGrowingTips();
                             growingTips.setWatering(getXMLText(reader));
                             flower.setGrowingTips(growingTips);
+                            break;
 
                         }
                         case GROWING_TIPS -> {
                             flower.setGrowingTips(getXMLGrowingTips(reader));
+                            break;
 
                         }
                         case VISUAL_PARAMETERS -> {
                             flower.setVisualParameters(getXMLVisualParameters(reader));
+                            break;
 
                         }
                     }
@@ -154,6 +168,7 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                         return flower;
                     }
                 }
+                break;
             }
         }
         throw new ParsingXMLException("End tag of " + flower.getClass().getSimpleName() + " is not found.");
@@ -172,9 +187,18 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                     name = reader.getLocalName();
                     FlowerXmlTag tag = FlowerXmlTag.getXmlTag(name);
                     switch (tag) {
-                        case WATERING -> growingTips.setWatering(getXMLText(reader));
-                        case LIGHTING -> growingTips.setLighting((getXMLText(reader)));
-                        case MIN_TEMPERATURE -> growingTips.setMinTemperature(Integer.parseInt(getXMLText(reader)));
+                        case WATERING -> {
+                            growingTips.setWatering(getXMLText(reader));
+                            break;
+                        }
+                        case LIGHTING -> {
+                            growingTips.setLighting((getXMLText(reader)));
+                            break;
+                        }
+                        case MIN_TEMPERATURE -> {
+                            growingTips.setMinTemperature(Integer.parseInt(getXMLText(reader)));
+                            break;
+                        }
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
@@ -182,8 +206,10 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                     if (FlowerXmlTag.GROWING_TIPS == FlowerXmlTag.valueOf(name.toUpperCase().replace(HYPHEN, UNDERSCORE))) {
                         return growingTips;
                     }
+                    break;
             }
         }
+
         throw new XMLStreamException("End tag is not found");
     }
 
@@ -200,15 +226,23 @@ public class FlowerStaxBuilder extends AbstractFlowerBuilder {
                     name = reader.getLocalName();
                     FlowerXmlTag tag = FlowerXmlTag.getXmlTag(name);
                     switch (tag) {
-                        case SIZE -> visualParameters.setSize(Double.parseDouble(getXMLText(reader)));
-                        case INFLORESCENCE_COLOR -> visualParameters.setInflorescenceColor((getXMLText(reader)));
+                        case SIZE -> {
+                            visualParameters.setSize(Double.parseDouble(getXMLText(reader)));
+                            break;
+                        }
+                        case INFLORESCENCE_COLOR -> {
+                            visualParameters.setInflorescenceColor((getXMLText(reader)));
+                            break;
+                        }
                     }
+                    break;
                 }
                 case XMLStreamConstants.END_ELEMENT -> {
                     name = reader.getLocalName();
                     if (FlowerXmlTag.VISUAL_PARAMETERS == FlowerXmlTag.valueOf(name.toUpperCase().replace(HYPHEN, UNDERSCORE))) {
                         return visualParameters;
                     }
+                    break;
                 }
             }
         }
